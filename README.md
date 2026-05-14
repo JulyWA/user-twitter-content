@@ -71,6 +71,7 @@ data/users/<handle>/
 
 如果你只是想知道这批内容有什么价值，优先看：
 
+- `docs/AI_USAGE_GUIDE.md`：给团队成员和其他 AI 的使用指引，说明如何分析、如何引用证据、什么情况下不要重复抓取
 - `docs/KOL_KNOWLEDGE_DIGEST.md`：全局摘要，说明每个 KOL 的可用价值和代表主题
 - `docs/KOL_RESEARCH_LOGIC.md`：跨 KOL 的投研逻辑沉淀，重点是信号、否决条件、适用场景
 - `docs/KOL_DOC_FORMAT.md`：每个 KOL 的 `report.md` 和 `research_logic.md` 固定格式规范
@@ -207,3 +208,19 @@ git push -u origin main
 RapidAPI 的 timeline endpoint 能持续翻页直到 continuation token 消失，但这不等于官方意义上的历史全量搜索。它返回的是该 API 当前可分页窗口内的数据。
 
 如果某个 KOL 只能抓到最近一段时间，后续需要增加 search endpoint，用类似 `from:handle since:YYYY-MM-DD until:YYYY-MM-DD` 的方式分段回补。
+
+## 给团队成员和其他 AI
+
+如果团队成员或他们使用的 AI 只需要分析知识库，不需要重新抓取，请优先阅读：
+
+```text
+docs/AI_USAGE_GUIDE.md
+```
+
+核心原则：
+
+- 不要重复调用 RapidAPI，除非任务明确要求更新抓取。
+- 不要提交 `.env.local`、API key、GitHub token、cookie。
+- 不要把当前数据称为账号注册以来的官方全量。
+- 分析结论要保留 KOL handle 和原文 URL。
+- `RT @` 开头的内容不要直接归因为当前 KOL 原创观点。
