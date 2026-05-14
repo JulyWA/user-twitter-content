@@ -21,6 +21,18 @@
 - `data/index/users.json`
 - `data/index/twitter_knowledge_all.jsonl`
 - `data/index/twitter_links_all.jsonl`
+- `docs/KOL_DOC_FORMAT.md`：账号报告和投研逻辑文档的固定格式
+
+## 文档层级
+
+每个 KOL 的中文文档分两层：
+
+| 文件 | 作用 | 使用方式 |
+|---|---|---|
+| `report.md` | 账号级知识报告，说明这个账号有什么价值、适合什么场景、有哪些证据链接 | 初次了解一个 KOL 时先读 |
+| `research_logic.md` | 投研逻辑沉淀，包含重要信号矩阵、否决信号矩阵、使用流程和问题库 | 做项目研究 checklist 时使用 |
+
+新增 KOL 的文档已经升级为“可审计版本”：核心判断都尽量挂原文链接，并标注 RT/转推使用提醒。
 
 ## 这批内容到底有什么用
 
