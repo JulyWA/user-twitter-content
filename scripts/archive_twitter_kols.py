@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Archive Twitter/X timelines from RapidAPI's twitter154 host.
+Archive Twitter/X timelines from RapidAPI.
 
 The script keeps the raw API payloads and also writes normalized JSONL plus a
 small clean JSON format that matches the existing kol-scorer source data.
@@ -19,7 +19,9 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_HOST = "twitter154.p.rapidapi.com"
+DEFAULT_HOST = "twitter241.p.rapidapi.com"
+OLDBIRD_HOST = "twitter154.p.rapidapi.com"
+TWTTR_HOST = "twitter241.p.rapidapi.com"
 DEFAULT_OUTPUT_DIR = Path("data/users")
 DEFAULT_LIMIT = 20
 DEFAULT_SLEEP_SECONDS = 2.0
@@ -80,7 +82,7 @@ class Twitter154Client:
         return self._request("POST", url, json=payload)
 
     def _request(self, method: str, url: str, **kwargs: Any) -> dict[str, Any]:
-        last_error: Exception | None = None
+        last_error: str | None = None
         for attempt in range(1, self.retries + 1):
             try:
                 response = self.session.request(
@@ -90,9 +92,11 @@ class Twitter154Client:
                     **kwargs,
                 )
                 if response.status_code in {429, 500, 502, 503, 504}:
-                    delay = min(60, 2**attempt)
+                    last_error = describe_response(response)
+                    retry_after = response.headers.get("Retry-After")
+                    delay = parse_retry_after(retry_after) or min(120, 2**attempt)
                     print(
-                        f"    transient HTTP {response.status_code}; "
+                        f"    HTTP {response.status_code}; "
                         f"retrying in {delay}s ({attempt}/{self.retries})"
                     )
                     time.sleep(delay)
@@ -100,13 +104,94 @@ class Twitter154Client:
                 response.raise_for_status()
                 return response.json()
             except (self.requests.RequestException, json.JSONDecodeError) as exc:
-                last_error = exc
+                response = getattr(exc, "response", None)
+                last_error = describe_response(response) if response is not None else str(exc)
                 if attempt == self.retries:
                     break
                 delay = min(60, 2**attempt)
                 print(f"    request failed; retrying in {delay}s ({attempt}/{self.retries})")
                 time.sleep(delay)
         raise RuntimeError(f"request failed after {self.retries} attempts: {last_error}")
+
+
+class Twttr241Client:
+    def __init__(
+        self,
+        api_key: str,
+        host: str = TWTTR_HOST,
+        timeout: int = 20,
+        retries: int = 3,
+    ) -> None:
+        self.host = host
+        self.timeout = timeout
+        self.retries = retries
+        import requests
+
+        self.requests = requests
+        self.session = requests.Session()
+        self.session.headers.update(
+            {
+                "x-rapidapi-key": api_key,
+                "x-rapidapi-host": host,
+            }
+        )
+
+    def get_user_by_username(self, username: str) -> dict[str, Any]:
+        return self._request("GET", f"https://{self.host}/user", params={"username": username})
+
+    def get_user_tweets(self, user_id: str, count: int, cursor: str | None = None) -> dict[str, Any]:
+        params = {"user": user_id, "count": count}
+        if cursor:
+            params["cursor"] = cursor
+        return self._request("GET", f"https://{self.host}/user-tweets", params=params)
+
+    def _request(self, method: str, url: str, **kwargs: Any) -> dict[str, Any]:
+        last_error: str | None = None
+        for attempt in range(1, self.retries + 1):
+            try:
+                response = self.session.request(method, url, timeout=self.timeout, **kwargs)
+                if response.status_code in {429, 500, 502, 503, 504}:
+                    last_error = describe_response(response)
+                    retry_after = response.headers.get("Retry-After")
+                    delay = parse_retry_after(retry_after) or min(120, 2**attempt)
+                    print(
+                        f"    HTTP {response.status_code}; "
+                        f"retrying in {delay}s ({attempt}/{self.retries})"
+                    )
+                    time.sleep(delay)
+                    continue
+                response.raise_for_status()
+                return response.json()
+            except (self.requests.RequestException, json.JSONDecodeError) as exc:
+                response = getattr(exc, "response", None)
+                last_error = describe_response(response) if response is not None else str(exc)
+                if attempt == self.retries:
+                    break
+                delay = min(60, 2**attempt)
+                print(f"    request failed; retrying in {delay}s ({attempt}/{self.retries})")
+                time.sleep(delay)
+        raise RuntimeError(f"request failed after {self.retries} attempts: {last_error}")
+
+
+def parse_retry_after(value: str | None) -> int | None:
+    if not value:
+        return None
+    try:
+        return max(1, min(600, int(value)))
+    except ValueError:
+        return None
+
+
+def describe_response(response: Any) -> str:
+    status = getattr(response, "status_code", "unknown")
+    text = ""
+    try:
+        text = response.text.strip()
+    except Exception:
+        text = ""
+    if len(text) > 500:
+        text = text[:500] + "..."
+    return f"HTTP {status}: {text or '<empty response body>'}"
 
 
 def utc_now_iso() -> str:
@@ -128,12 +213,152 @@ def tweet_sort_key(tweet: dict[str, Any]) -> int:
         return value
     if isinstance(value, str) and value.isdigit():
         return int(value)
+    created = tweet.get("creation_date") or tweet.get("created_at_raw") or tweet.get("created_at")
+    if isinstance(created, str):
+        try:
+            return int(parsedate_to_datetime(created).timestamp())
+        except (TypeError, ValueError, IndexError):
+            try:
+                return int(datetime.fromisoformat(created.replace("Z", "+00:00")).timestamp())
+            except ValueError:
+                return 0
     return 0
 
 
 def tweet_id(tweet: dict[str, Any]) -> str | None:
     value = tweet.get("tweet_id") or tweet.get("id") or tweet.get("id_str")
     return str(value) if value else None
+
+
+def find_first_key(data: Any, keys: set[str]) -> Any:
+    if isinstance(data, dict):
+        for key, value in data.items():
+            if key in keys and value not in (None, ""):
+                return value
+        for value in data.values():
+            found = find_first_key(value, keys)
+            if found not in (None, ""):
+                return found
+    elif isinstance(data, list):
+        for item in data:
+            found = find_first_key(item, keys)
+            if found not in (None, ""):
+                return found
+    return None
+
+
+def find_user_rest_id(data: dict[str, Any]) -> str | None:
+    value = find_first_key(data, {"rest_id", "user_id", "id_str"})
+    return str(value) if value else None
+
+
+def looks_like_tweet(data: dict[str, Any]) -> bool:
+    if data.get("__typename") in {"Tweet", "TweetWithVisibilityResults"}:
+        return True
+    if data.get("rest_id") and isinstance(data.get("legacy"), dict):
+        legacy = data["legacy"]
+        return bool(legacy.get("full_text") or legacy.get("created_at"))
+    if data.get("tweet_id") or data.get("id_str"):
+        return bool(data.get("text") or data.get("full_text"))
+    return False
+
+
+def unwrap_tweet(data: dict[str, Any]) -> dict[str, Any]:
+    if data.get("__typename") == "TweetWithVisibilityResults":
+        tweet = data.get("tweet")
+        if isinstance(tweet, dict):
+            return tweet
+    return data
+
+
+def collect_tweet_objects(data: Any, out: list[dict[str, Any]]) -> None:
+    if isinstance(data, dict):
+        data = unwrap_tweet(data)
+        if looks_like_tweet(data):
+            out.append(data)
+            return
+        for value in data.values():
+            collect_tweet_objects(value, out)
+    elif isinstance(data, list):
+        for item in data:
+            collect_tweet_objects(item, out)
+
+
+def extract_bottom_cursor(data: Any) -> str | None:
+    if isinstance(data, dict):
+        cursor_type = str(
+            data.get("cursorType")
+            or data.get("cursor_type")
+            or data.get("type")
+            or data.get("__typename")
+            or ""
+        ).lower()
+        value = data.get("value") or data.get("cursor") or data.get("cursorValue")
+        if value and ("bottom" in cursor_type or cursor_type in {"showmore", "timelinecursor"}):
+            return str(value)
+        for child in data.values():
+            found = extract_bottom_cursor(child)
+            if found:
+                return found
+    elif isinstance(data, list):
+        for item in data:
+            found = extract_bottom_cursor(item)
+            if found:
+                return found
+    return None
+
+
+def normalize_twttr_tweet(tweet: dict[str, Any], username: str) -> dict[str, Any]:
+    legacy = tweet.get("legacy") if isinstance(tweet.get("legacy"), dict) else tweet
+    core = tweet.get("core") if isinstance(tweet.get("core"), dict) else {}
+    user_result = find_first_key(core, {"result"})
+    user = user_result if isinstance(user_result, dict) else {}
+    user_legacy = user.get("legacy") if isinstance(user.get("legacy"), dict) else {}
+    tid = str(tweet.get("rest_id") or legacy.get("id_str") or legacy.get("tweet_id") or "")
+    created_at = legacy.get("created_at") or tweet.get("creation_date")
+    return {
+        "tweet_id": tid,
+        "creation_date": created_at,
+        "text": legacy.get("full_text") or legacy.get("text") or tweet.get("text") or "",
+        "media_url": None,
+        "video_url": None,
+        "user": {
+            "user_id": str(user.get("rest_id") or user_legacy.get("id_str") or ""),
+            "username": user_legacy.get("screen_name") or username,
+            "name": user_legacy.get("name"),
+            "follower_count": user_legacy.get("followers_count"),
+            "following_count": user_legacy.get("friends_count"),
+            "description": user_legacy.get("description"),
+        },
+        "language": legacy.get("lang"),
+        "favorite_count": legacy.get("favorite_count") or 0,
+        "retweet_count": legacy.get("retweet_count") or 0,
+        "reply_count": legacy.get("reply_count") or legacy.get("reply_count") or 0,
+        "quote_count": legacy.get("quote_count") or 0,
+        "retweet": bool(legacy.get("retweeted")),
+        "views": find_first_key(tweet, {"count"}) if isinstance(tweet.get("views"), dict) else tweet.get("views"),
+        "timestamp": tweet_sort_key({"creation_date": created_at}),
+        "in_reply_to_status_id": legacy.get("in_reply_to_status_id_str"),
+        "quoted_status_id": legacy.get("quoted_status_id_str"),
+        "expanded_url": extract_expanded_url(legacy),
+        "conversation_id": legacy.get("conversation_id_str"),
+        "source": legacy.get("source"),
+        "_raw_provider": "twttr241",
+        "_raw": tweet,
+    }
+
+
+def extract_expanded_url(legacy: dict[str, Any]) -> str | None:
+    entities = legacy.get("entities")
+    if not isinstance(entities, dict):
+        return None
+    urls = entities.get("urls")
+    if not isinstance(urls, list) or not urls:
+        return None
+    first = urls[0]
+    if not isinstance(first, dict):
+        return None
+    return first.get("expanded_url") or first.get("url")
 
 
 def dedupe_tweets(tweets: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -258,7 +483,7 @@ def infer_user_id(tweets: list[dict[str, Any]]) -> str | None:
 
 
 def archive_username(
-    client: Twitter154Client,
+    client: Any,
     username: str,
     args: argparse.Namespace,
 ) -> None:
@@ -283,6 +508,20 @@ def archive_username(
         and checkpoint.get("user_id")
         and not args.fresh
     )
+
+    if args.provider == "twttr241":
+        archive_username_twttr241(
+            client,
+            safe_username,
+            args,
+            raw_path,
+            jsonl_path,
+            clean_path,
+            checkpoint_path,
+            existing_tweets,
+            checkpoint,
+        )
+        return
 
     if start_from_checkpoint:
         continuation_token = str(checkpoint["continuation_token"])
@@ -375,6 +614,109 @@ def archive_username(
     print(f"  clean {clean_path}")
 
 
+def archive_username_twttr241(
+    client: Twttr241Client,
+    username: str,
+    args: argparse.Namespace,
+    raw_path: Path,
+    jsonl_path: Path,
+    clean_path: Path,
+    checkpoint_path: Path,
+    existing_tweets: list[dict[str, Any]],
+    checkpoint: dict[str, Any],
+) -> None:
+    all_tweets = list(existing_tweets)
+    continuation_token = None
+    user_id = None
+    start_from_checkpoint = (
+        args.resume
+        and isinstance(checkpoint, dict)
+        and checkpoint.get("continuation_token")
+        and checkpoint.get("user_id")
+        and not args.fresh
+    )
+
+    if start_from_checkpoint:
+        continuation_token = str(checkpoint["continuation_token"])
+        user_id = str(checkpoint["user_id"])
+        page = int(checkpoint.get("pages_fetched", 0))
+        print(f"@{username}: resuming Twttr API from checkpoint at page {page + 1}")
+    else:
+        print(f"@{username}: resolving user id via Twttr API")
+        user_data = client.get_user_by_username(username)
+        user_id = find_user_rest_id(user_data)
+        if not user_id:
+            debug_path = raw_path.parent / "user_lookup_debug.json"
+            write_json(debug_path, user_data)
+            raise RuntimeError(f"Could not find rest_id for @{username}; debug saved to {debug_path}")
+        page = 0
+        print(f"@{username}: user_id={user_id}; fetching first Twttr page")
+
+    no_new_pages = 0
+    while True:
+        if args.max_pages and page >= args.max_pages:
+            print(f"  reached --max-pages={args.max_pages}; checkpoint kept for resume")
+            break
+        if page > 0:
+            time.sleep(args.sleep)
+        page += 1
+        data = client.get_user_tweets(user_id, args.limit, continuation_token)
+        raw_tweets: list[dict[str, Any]] = []
+        collect_tweet_objects(data, raw_tweets)
+        tweets = [normalize_twttr_tweet(tweet, username) for tweet in raw_tweets]
+        if not tweets:
+            debug_path = raw_path.parent / f"tweets_page_{page}_debug.json"
+            write_json(debug_path, data)
+            print(f"  page {page}: no tweet objects found; debug saved to {debug_path}")
+            break
+        before = len(all_tweets)
+        all_tweets.extend(tweets)
+        all_tweets = dedupe_tweets(all_tweets)
+        added = len(all_tweets) - before
+        no_new_pages = no_new_pages + 1 if added == 0 else 0
+        continuation_token = extract_bottom_cursor(data)
+        save_outputs(
+            username,
+            all_tweets,
+            page,
+            continuation_token,
+            user_id,
+            args,
+            raw_path,
+            jsonl_path,
+            clean_path,
+            checkpoint_path,
+        )
+        print(f"  page {page}: +{added} new/{len(tweets)} fetched, total {len(all_tweets)}")
+        if no_new_pages >= 3:
+            print("  no new tweets for 3 consecutive pages; stopping")
+            continuation_token = None
+            break
+        if not continuation_token:
+            print(f"  page {page}: no bottom cursor; stopping")
+            break
+
+    all_tweets = dedupe_tweets(all_tweets)
+    save_outputs(
+        username,
+        all_tweets,
+        page,
+        continuation_token,
+        user_id,
+        args,
+        raw_path,
+        jsonl_path,
+        clean_path,
+        checkpoint_path,
+    )
+    if not continuation_token:
+        checkpoint_path.unlink(missing_ok=True)
+    print(f"@{username}: archived {len(all_tweets)} unique tweets")
+    print(f"  raw   {raw_path}")
+    print(f"  jsonl {jsonl_path}")
+    print(f"  clean {clean_path}")
+
+
 def save_outputs(
     username: str,
     tweets: list[dict[str, Any]],
@@ -421,7 +763,7 @@ def save_outputs(
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Archive Twitter/X timelines through RapidAPI twitter154."
+        description="Archive Twitter/X timelines through RapidAPI."
     )
     parser.add_argument("usernames", nargs="*", help="X usernames, with or without @")
     parser.add_argument("--user-file", type=Path, help="Text file with one username per line")
@@ -433,6 +775,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Optional local env file. Values already in the shell take priority.",
     )
     parser.add_argument("--host", default=os.getenv("RAPIDAPI_HOST", DEFAULT_HOST))
+    parser.add_argument(
+        "--provider",
+        choices=("auto", "twttr241", "oldbird"),
+        default="auto",
+        help="API adapter. auto uses twttr241 for twitter241 host, otherwise oldbird.",
+    )
     parser.add_argument("--key-env", default="RAPIDAPI_KEY")
     parser.add_argument("--limit", type=int, default=DEFAULT_LIMIT)
     parser.add_argument(
@@ -475,6 +823,8 @@ def load_env_file(path: Path) -> None:
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
     load_env_file(args.env_file)
+    if args.provider == "auto":
+        args.provider = "twttr241" if "twitter241" in args.host else "oldbird"
     usernames = load_usernames(args)
     if not usernames:
         print("No usernames provided. Example: archive_twitter_kols.py BTCdayu 0xSunNFT")
@@ -486,12 +836,8 @@ def main(argv: list[str]) -> int:
         print(f"  export {args.key_env}='your_rapidapi_key'")
         return 2
 
-    client = Twitter154Client(
-        api_key=api_key,
-        host=args.host,
-        timeout=args.timeout,
-        retries=args.retries,
-    )
+    client_cls = Twttr241Client if args.provider == "twttr241" else Twitter154Client
+    client = client_cls(api_key=api_key, host=args.host, timeout=args.timeout, retries=args.retries)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     for username in usernames:
         archive_username(client, username, args)

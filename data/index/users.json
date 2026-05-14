@@ -1,0 +1,108 @@
+[
+  {
+    "handle": "0xSunNFT",
+    "sources": [
+      "twitter"
+    ],
+    "twitter": {
+      "normalized_tweets": 782,
+      "knowledge_records": 367,
+      "link_records": 251,
+      "excluded_records": 164,
+      "newest": "2026-05-02T08:37:25+00:00",
+      "oldest": "2023-09-04T01:25:12+00:00",
+      "top_categories": [
+        [
+          "project_thesis",
+          213
+        ],
+        [
+          "market_cycle",
+          171
+        ],
+        [
+          "onchain_strategy",
+          166
+        ],
+        [
+          "asset_reference",
+          104
+        ],
+        [
+          "investment_framework",
+          87
+        ],
+        [
+          "risk_warning",
+          54
+        ],
+        [
+          "research_source",
+          45
+        ],
+        [
+          "style_sample",
+          17
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/0xSunNFT/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/0xSunNFT/knowledge/twitter_links.jsonl",
+      "summary": "data/users/0xSunNFT/knowledge/twitter_summary.md"
+    }
+  },
+  {
+    "handle": "BTCdayu",
+    "sources": [
+      "twitter"
+    ],
+    "twitter": {
+      "normalized_tweets": 829,
+      "knowledge_records": 268,
+      "link_records": 190,
+      "excluded_records": 371,
+      "newest": "2026-05-14T01:39:32+00:00",
+      "oldest": "2022-11-29T02:22:35+00:00",
+      "top_categories": [
+        [
+          "market_cycle",
+          147
+        ],
+        [
+          "investment_framework",
+          109
+        ],
+        [
+          "project_thesis",
+          99
+        ],
+        [
+          "onchain_strategy",
+          63
+        ],
+        [
+          "risk_warning",
+          51
+        ],
+        [
+          "research_source",
+          45
+        ],
+        [
+          "asset_reference",
+          26
+        ],
+        [
+          "style_sample",
+          4
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/BTCdayu/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/BTCdayu/knowledge/twitter_links.jsonl",
+      "summary": "data/users/BTCdayu/knowledge/twitter_summary.md"
+    }
+  }
+]

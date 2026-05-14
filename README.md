@@ -17,7 +17,7 @@
 
 ```bash
 export RAPIDAPI_KEY='替换成你的 RapidAPI key'
-export RAPIDAPI_HOST='twitter154.p.rapidapi.com'
+export RAPIDAPI_HOST='twitter241.p.rapidapi.com'
 ```
 
 写入本仓库本地配置文件：
@@ -79,6 +79,16 @@ cp config/handles.example.txt config/handles.txt
 python3 scripts/archive_twitter_kols.py --user-file config/handles.txt
 ```
 
+脚本默认使用你当前可用的 `Twttr API`：
+
+```text
+Host: twitter241.p.rapidapi.com
+User lookup: GET /user?username=<handle>
+User tweets: GET /user-tweets?user=<rest_id>&count=20&cursor=<cursor>
+```
+
+旧的 `The Old Bird / twitter154` 如果额度用完会返回 `HTTP 429`，当前不建议作为默认抓取源。
+
 小样本测试：
 
 ```bash
@@ -103,6 +113,7 @@ python3 scripts/archive_twitter_kols.py BTCdayu --fresh
 
 ```bash
 python3 scripts/build_twitter_knowledge.py
+python3 scripts/build_index.py
 ```
 
 只处理某几个用户：
@@ -115,6 +126,7 @@ python3 scripts/build_twitter_knowledge.py BTCdayu 0xSunNFT
 
 ```bash
 python3 scripts/build_twitter_knowledge.py --threshold 8
+python3 scripts/build_index.py
 ```
 
 输出说明：
@@ -123,6 +135,22 @@ python3 scripts/build_twitter_knowledge.py --threshold 8
 - `twitter_links.jsonl`：内容本身不够强，但值得保留的链接
 - `twitter_excluded.jsonl`：被排除的噪音样本，方便以后调规则
 - `twitter_summary.md`：数量统计
+
+全局索引输出：
+
+- `data/index/users.json`：每个用户的数据规模、时间范围、类别分布
+- `data/index/twitter_knowledge_all.jsonl`：跨 KOL 的知识记录合集
+- `data/index/twitter_links_all.jsonl`：跨 KOL 的链接合集
+
+## 更新流程
+
+后续新增或更新 KOL 时，标准顺序是：
+
+```bash
+python3 scripts/archive_twitter_kols.py --user-file config/handles.txt --sleep 3
+python3 scripts/build_twitter_knowledge.py
+python3 scripts/build_index.py
+```
 
 ## Public Repo 提交建议
 
