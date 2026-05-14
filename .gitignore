@@ -6,7 +6,7 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# Source archives can become large and may contain data you do not want in a
-# public repo. Keep curated knowledge files under version control instead.
-data/users/*/sources/
+# Raw API archives can become large and include provider-specific metadata.
+# Keep normalized/clean source text under version control instead.
+data/users/*/sources/twitter/raw/
 data/users/*/state/
