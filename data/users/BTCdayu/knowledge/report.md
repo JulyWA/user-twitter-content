@@ -56,6 +56,7 @@ BTCdayu 更适合作为“价值投资 + 项目质量”的判断视角。他的
 
 ## 文件说明
 
+- `research_logic.md`：去掉噪音后沉淀出的投研逻辑、重要信号和否决信号
 - `twitter_knowledge.jsonl`：筛选后的知识记录
 - `twitter_links.jsonl`：有价值链接或弱上下文记录
 - `twitter_excluded.jsonl`：被排除样本，用于复查筛选规则
