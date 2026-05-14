@@ -65,6 +65,15 @@ data/users/<handle>/
 
 当前先实现 Twitter/X。Telegram 公开页和公众号归档先预留目录。
 
+## 先看什么
+
+如果你只是想知道这批内容有什么价值，优先看：
+
+- `docs/KOL_KNOWLEDGE_DIGEST.md`：全局摘要，说明每个 KOL 的可用价值和代表主题
+- `data/users/BTCdayu/knowledge/report.md`：BTCdayu 可读报告
+- `data/users/0xSunNFT/knowledge/report.md`：0xSunNFT 可读报告
+- `data/index/users.json`：每个用户的数据规模、时间范围、类别分布
+
 ## 抓取推文
 
 先复制 handle 列表：
