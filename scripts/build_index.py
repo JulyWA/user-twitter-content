@@ -29,6 +29,14 @@ def read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def read_json(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    with path.open("r", encoding="utf-8") as handle:
+        data = json.load(handle)
+    return data if isinstance(data, dict) else {}
+
+
 def write_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
@@ -59,12 +67,23 @@ def build_indexes(users_dir: Path, index_dir: Path) -> None:
         links = read_jsonl(user_dir / "knowledge" / "twitter_links.jsonl")
         excluded = read_jsonl(user_dir / "knowledge" / "twitter_excluded.jsonl")
         normalized = read_jsonl(user_dir / "sources" / "twitter" / "normalized" / "tweets.jsonl")
+        profile = read_json(user_dir / "sources" / "twitter" / "normalized" / "profile.json")
 
         categories = Counter(category for row in knowledge for category in row.get("categories", []))
         users.append(
             {
                 "handle": handle,
                 "sources": ["twitter"],
+                "profile": {
+                    "url": profile.get("url") or f"https://x.com/{handle}",
+                    "name": profile.get("name"),
+                    "description": profile.get("description"),
+                    "followers_count": profile.get("followers_count"),
+                    "verified": profile.get("verified"),
+                    "is_blue_verified": profile.get("is_blue_verified"),
+                    "verified_type": profile.get("verified_type"),
+                    "verified_or_above": profile.get("verified_or_above"),
+                },
                 "twitter": {
                     "normalized_tweets": len(normalized),
                     "knowledge_records": len(knowledge),

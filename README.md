@@ -48,6 +48,8 @@ data/users/<handle>/
   sources/
     twitter/
       raw/tweets_raw.json
+      raw/profile_raw.json
+      normalized/profile.json
       normalized/tweets.jsonl
       clean/tweets_clean.json
     telegram/
@@ -75,6 +77,8 @@ data/users/<handle>/
 - `data/users/BTCdayu/knowledge/research_logic.md`：BTCdayu 的价值投资/项目质量判断框架
 - `data/users/0xSunNFT/knowledge/report.md`：0xSunNFT 可读报告
 - `data/users/0xSunNFT/knowledge/research_logic.md`：0xSunNFT 的 Meme 周期/链上交易信号框架
+- `data/users/<handle>/knowledge/report.md`：每个新增 KOL 的中文可读报告
+- `data/users/<handle>/knowledge/research_logic.md`：每个新增 KOL 的投研逻辑、重要信号和否决信号
 - `data/index/users.json`：每个用户的数据规模、时间范围、类别分布
 
 ## 抓取推文
@@ -100,6 +104,8 @@ User tweets: GET /user-tweets?user=<rest_id>&count=20&cursor=<cursor>
 ```
 
 旧的 `The Old Bird / twitter154` 如果额度用完会返回 `HTTP 429`，当前不建议作为默认抓取源。
+
+脚本会同时保存 `normalized/profile.json`，其中包含粉丝数、简介、`verified`、`is_blue_verified`、`verified_or_above` 等字段。新增 KOL 搜索和归档时，优先使用蓝 V / verified_or_above 账号。
 
 小样本测试：
 

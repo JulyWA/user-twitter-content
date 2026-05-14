@@ -4,6 +4,16 @@
     "sources": [
       "twitter"
     ],
+    "profile": {
+      "url": "https://x.com/0xSunNFT",
+      "name": null,
+      "description": null,
+      "followers_count": null,
+      "verified": null,
+      "is_blue_verified": null,
+      "verified_type": null,
+      "verified_or_above": null
+    },
     "twitter": {
       "normalized_tweets": 782,
       "knowledge_records": 367,
@@ -57,6 +67,16 @@
     "sources": [
       "twitter"
     ],
+    "profile": {
+      "url": "https://x.com/BTCdayu",
+      "name": null,
+      "description": null,
+      "followers_count": null,
+      "verified": null,
+      "is_blue_verified": null,
+      "verified_type": null,
+      "verified_or_above": null
+    },
     "twitter": {
       "normalized_tweets": 829,
       "knowledge_records": 268,
@@ -103,6 +123,317 @@
       "knowledge": "data/users/BTCdayu/knowledge/twitter_knowledge.jsonl",
       "links": "data/users/BTCdayu/knowledge/twitter_links.jsonl",
       "summary": "data/users/BTCdayu/knowledge/twitter_summary.md"
+    }
+  },
+  {
+    "handle": "SonMa84176",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/SonMa84176",
+      "name": null,
+      "description": "BTC holder 10年+｜TESLA 8年+｜结构思考派｜Premium+｜",
+      "followers_count": 4290,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 615,
+      "knowledge_records": 155,
+      "link_records": 237,
+      "excluded_records": 223,
+      "newest": "2026-05-13T12:35:25+00:00",
+      "oldest": "2025-10-05T11:59:39+00:00",
+      "top_categories": [
+        [
+          "market_cycle",
+          99
+        ],
+        [
+          "investment_framework",
+          62
+        ],
+        [
+          "risk_warning",
+          55
+        ],
+        [
+          "onchain_strategy",
+          46
+        ],
+        [
+          "research_source",
+          34
+        ],
+        [
+          "project_thesis",
+          32
+        ],
+        [
+          "style_sample",
+          15
+        ],
+        [
+          "asset_reference",
+          9
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/SonMa84176/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/SonMa84176/knowledge/twitter_links.jsonl",
+      "summary": "data/users/SonMa84176/knowledge/twitter_summary.md"
+    }
+  },
+  {
+    "handle": "Super4DeFi",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/Super4DeFi",
+      "name": null,
+      "description": "香港流动性社区，泛投资生活方式。主要进社区的方式是老带新，您可以和你身边本末群友充分了解后，再考虑让他介绍您进社区。 其他合作找里里老师@Riconomi",
+      "followers_count": 93035,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 837,
+      "knowledge_records": 179,
+      "link_records": 74,
+      "excluded_records": 584,
+      "newest": "2026-05-12T07:46:41+00:00",
+      "oldest": "2024-07-17T01:43:36+00:00",
+      "top_categories": [
+        [
+          "project_thesis",
+          120
+        ],
+        [
+          "market_cycle",
+          77
+        ],
+        [
+          "onchain_strategy",
+          56
+        ],
+        [
+          "investment_framework",
+          27
+        ],
+        [
+          "risk_warning",
+          27
+        ],
+        [
+          "research_source",
+          7
+        ],
+        [
+          "style_sample",
+          4
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/Super4DeFi/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/Super4DeFi/knowledge/twitter_links.jsonl",
+      "summary": "data/users/Super4DeFi/knowledge/twitter_summary.md"
+    }
+  },
+  {
+    "handle": "Vida_BWE",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/Vida_BWE",
+      "name": null,
+      "description": "pretending to be semi-retired but secretly grinding prop trading firm founder. play a zero-sum game with positive-sum systems.",
+      "followers_count": 76310,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 335,
+      "knowledge_records": 99,
+      "link_records": 38,
+      "excluded_records": 198,
+      "newest": "2026-03-23T02:43:29+00:00",
+      "oldest": "2022-11-10T11:59:59+00:00",
+      "top_categories": [
+        [
+          "market_cycle",
+          62
+        ],
+        [
+          "onchain_strategy",
+          30
+        ],
+        [
+          "investment_framework",
+          23
+        ],
+        [
+          "project_thesis",
+          14
+        ],
+        [
+          "asset_reference",
+          14
+        ],
+        [
+          "risk_warning",
+          8
+        ],
+        [
+          "research_source",
+          4
+        ],
+        [
+          "style_sample",
+          2
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/Vida_BWE/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/Vida_BWE/knowledge/twitter_links.jsonl",
+      "summary": "data/users/Vida_BWE/knowledge/twitter_summary.md"
+    }
+  },
+  {
+    "handle": "bitfish",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/bitfish",
+      "name": null,
+      "description": "Co-founder of F2Pool & Cobo. Bitcoin enthusiast exploring DeFi & AI.   A risk manager, not a prophet.",
+      "followers_count": 219014,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 736,
+      "knowledge_records": 200,
+      "link_records": 171,
+      "excluded_records": 365,
+      "newest": "2026-05-12T07:53:44+00:00",
+      "oldest": "2022-11-13T06:18:29+00:00",
+      "top_categories": [
+        [
+          "investment_framework",
+          94
+        ],
+        [
+          "market_cycle",
+          81
+        ],
+        [
+          "project_thesis",
+          62
+        ],
+        [
+          "risk_warning",
+          51
+        ],
+        [
+          "research_source",
+          26
+        ],
+        [
+          "onchain_strategy",
+          19
+        ],
+        [
+          "style_sample",
+          10
+        ],
+        [
+          "asset_reference",
+          1
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/bitfish/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/bitfish/knowledge/twitter_links.jsonl",
+      "summary": "data/users/bitfish/knowledge/twitter_summary.md"
+    }
+  },
+  {
+    "handle": "xiaomustock",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/xiaomustock",
+      "name": null,
+      "description": "一个自由的AI股票大宗期权纯二级韭菜交易员 -所有内容不构成任何投资建议-不会参与接受任何推广和广告-不会私聊任何人不碰任何人资金-任何借我名义私聊或者推广或者收费或其他地方假借助理顾问也都是诈骗，谨防上当。 推特只用作自身投资笔记，悉知。",
+      "followers_count": 225635,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 798,
+      "knowledge_records": 275,
+      "link_records": 331,
+      "excluded_records": 192,
+      "newest": "2026-05-14T04:32:14+00:00",
+      "oldest": "2025-09-23T14:06:54+00:00",
+      "top_categories": [
+        [
+          "market_cycle",
+          126
+        ],
+        [
+          "project_thesis",
+          117
+        ],
+        [
+          "investment_framework",
+          71
+        ],
+        [
+          "risk_warning",
+          62
+        ],
+        [
+          "asset_reference",
+          59
+        ],
+        [
+          "onchain_strategy",
+          44
+        ],
+        [
+          "research_source",
+          34
+        ],
+        [
+          "style_sample",
+          4
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/xiaomustock/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/xiaomustock/knowledge/twitter_links.jsonl",
+      "summary": "data/users/xiaomustock/knowledge/twitter_summary.md"
     }
   }
 ]

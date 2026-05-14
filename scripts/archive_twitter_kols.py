@@ -252,6 +252,77 @@ def find_user_rest_id(data: dict[str, Any]) -> str | None:
     return str(value) if value else None
 
 
+def looks_like_user(data: dict[str, Any]) -> bool:
+    legacy = data.get("legacy")
+    if data.get("__typename") == "User" and isinstance(legacy, dict):
+        return True
+    if data.get("rest_id") and isinstance(legacy, dict):
+        return bool(legacy.get("screen_name") or legacy.get("followers_count"))
+    return False
+
+
+def collect_user_objects(data: Any, out: list[dict[str, Any]]) -> None:
+    if isinstance(data, dict):
+        if looks_like_user(data):
+            out.append(data)
+        for value in data.values():
+            collect_user_objects(value, out)
+    elif isinstance(data, list):
+        for item in data:
+            collect_user_objects(item, out)
+
+
+def normalize_user_profile(data: dict[str, Any], username: str, user_id: str | None) -> dict[str, Any]:
+    users: list[dict[str, Any]] = []
+    collect_user_objects(data, users)
+    chosen: dict[str, Any] = {}
+    for user in users:
+        legacy = user.get("legacy") if isinstance(user.get("legacy"), dict) else {}
+        screen_name = str(legacy.get("screen_name") or "")
+        if screen_name.lower() == username.lower():
+            chosen = user
+            break
+    if not chosen and users:
+        chosen = users[0]
+
+    legacy = chosen.get("legacy") if isinstance(chosen.get("legacy"), dict) else {}
+    verification_info = chosen.get("verification_info")
+    verified_type = chosen.get("verified_type") or legacy.get("verified_type")
+    if isinstance(verification_info, dict) and not verified_type:
+        reason = verification_info.get("reason")
+        if isinstance(reason, dict):
+            description = reason.get("description")
+            if isinstance(description, dict):
+                verified_type = description.get("text")
+
+    verified = bool(legacy.get("verified") or chosen.get("verified"))
+    blue_verified = bool(
+        chosen.get("is_blue_verified")
+        or chosen.get("blue_verified")
+        or legacy.get("is_blue_verified")
+    )
+    return {
+        "username": legacy.get("screen_name") or username,
+        "url": f"https://x.com/{legacy.get('screen_name') or username}",
+        "user_id": str(chosen.get("rest_id") or legacy.get("id_str") or user_id or ""),
+        "name": legacy.get("name"),
+        "description": legacy.get("description"),
+        "followers_count": legacy.get("followers_count"),
+        "following_count": legacy.get("friends_count"),
+        "statuses_count": legacy.get("statuses_count"),
+        "created_at": parse_twitter_date(legacy.get("created_at")),
+        "created_at_raw": legacy.get("created_at"),
+        "location": legacy.get("location"),
+        "verified": verified,
+        "is_blue_verified": blue_verified,
+        "verified_type": verified_type,
+        "verified_or_above": bool(verified or blue_verified or verified_type),
+        "profile_image_url": legacy.get("profile_image_url_https"),
+        "fetched_at": utc_now_iso(),
+        "_raw_provider": "twttr241",
+    }
+
+
 def looks_like_tweet(data: dict[str, Any]) -> bool:
     if data.get("__typename") in {"Tweet", "TweetWithVisibilityResults"}:
         return True
@@ -490,6 +561,8 @@ def archive_username(
     safe_username = username.lstrip("@")
     user_dir = args.output_dir / safe_username
     raw_path = user_dir / "sources" / "twitter" / "raw" / "tweets_raw.json"
+    profile_raw_path = user_dir / "sources" / "twitter" / "raw" / "profile_raw.json"
+    profile_path = user_dir / "sources" / "twitter" / "normalized" / "profile.json"
     jsonl_path = user_dir / "sources" / "twitter" / "normalized" / "tweets.jsonl"
     clean_path = user_dir / "sources" / "twitter" / "clean" / "tweets_clean.json"
     checkpoint_path = user_dir / "state" / "twitter_checkpoint.json"
@@ -517,6 +590,8 @@ def archive_username(
             raw_path,
             jsonl_path,
             clean_path,
+            profile_raw_path,
+            profile_path,
             checkpoint_path,
             existing_tweets,
             checkpoint,
@@ -621,6 +696,8 @@ def archive_username_twttr241(
     raw_path: Path,
     jsonl_path: Path,
     clean_path: Path,
+    profile_raw_path: Path,
+    profile_path: Path,
     checkpoint_path: Path,
     existing_tweets: list[dict[str, Any]],
     checkpoint: dict[str, Any],
@@ -649,6 +726,8 @@ def archive_username_twttr241(
             debug_path = raw_path.parent / "user_lookup_debug.json"
             write_json(debug_path, user_data)
             raise RuntimeError(f"Could not find rest_id for @{username}; debug saved to {debug_path}")
+        write_json(profile_raw_path, user_data)
+        write_json(profile_path, normalize_user_profile(user_data, username, user_id))
         page = 0
         print(f"@{username}: user_id={user_id}; fetching first Twttr page")
 
@@ -668,6 +747,7 @@ def archive_username_twttr241(
             debug_path = raw_path.parent / f"tweets_page_{page}_debug.json"
             write_json(debug_path, data)
             print(f"  page {page}: no tweet objects found; debug saved to {debug_path}")
+            continuation_token = None
             break
         before = len(all_tweets)
         all_tweets.extend(tweets)
