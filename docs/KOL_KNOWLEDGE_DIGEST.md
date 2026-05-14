@@ -1,135 +1,135 @@
-# KOL Knowledge Digest
+# KOL 知识库摘要
 
-Last built: 2026-05-14
+更新时间：2026-05-14
 
-This digest is the human-readable layer above the JSONL files. It explains what was captured, what is useful, and how the material can support project research or content writing.
+这份文档是 JSONL 数据之上的“人类可读层”。它不堆原始推文，而是说明：这批数据抓到了什么、哪些内容有价值、以后可以怎么用于项目研究和内容写作。
 
-## Current Coverage
+## 当前覆盖范围
 
-| KOL | Twitter records | Knowledge records | Link-only records | Main value |
+| KOL | 已归档推文 | 入库知识记录 | 仅保留链接记录 | 主要价值 |
 |---|---:|---:|---:|---|
-| BTCdayu | 829 | 268 | 190 | Value investing, AI infrastructure, stablecoin/Circle, market-cycle risk, long-form research references |
-| 0xSunNFT | 782 | 367 | 251 | On-chain trading, meme cycles, CEX listing logic, event-driven trades, airdrop/farming mechanics |
+| BTCdayu | 829 | 268 | 190 | 价值投资、AI 基建、稳定币/Circle、市场周期风险、长文研报线索 |
+| 0xSunNFT | 782 | 367 | 251 | 链上交易、Meme 周期、CEX 上币逻辑、事件驱动交易、空投/撸毛机制 |
 
-Cross-user indexes:
+跨 KOL 索引文件：
 
 - `data/index/users.json`
 - `data/index/twitter_knowledge_all.jsonl`
 - `data/index/twitter_links_all.jsonl`
 
-## What Is Actually Useful Here
+## 这批内容到底有什么用
 
-### 1. Project Research Logic
+### 1. 提炼项目研究逻辑
 
-The knowledge layer captures reusable reasoning patterns rather than only tweet text.
+知识层保留的不是“所有推文”，而是可复用的判断框架、项目研究片段、风险信号和表达样本。
 
-BTCdayu is useful for:
+BTCdayu 适合用来：
 
-- Evaluating whether an asset has real business quality: revenue, moat, management, industry trend, valuation room.
-- Thinking about AI infrastructure as a multi-layer value chain: compute, power, storage, optical interconnect, memory, chips.
-- Looking at Circle/USDC and stablecoins through business-model and market-structure lenses.
-- Detecting crypto PVP structures: VC, project teams, exchanges, KOL rounds, unlock pressure, retail exit liquidity.
+- 判断一个资产是否有真实业务质量：收入、护城河、管理层、行业趋势、估值空间。
+- 研究 AI 基建价值链：算力、电力、存储、光互联、HBM、芯片。
+- 用商业模式和市场结构视角分析 Circle/USDC/稳定币。
+- 识别币圈 PVP 结构：VC、项目方、交易所、KOL 轮、解锁压力、散户接盘。
 
-0xSunNFT is useful for:
+0xSunNFT 适合用来：
 
-- Understanding how on-chain traders judge catalysts, liquidity, CEX listing paths, and narrative strength.
-- Extracting meme-cycle playbooks: leader vs follower, event-driven momentum, liquidity timing, and when to exit.
-- Studying actual trade retrospectives: what was bought/sold/shorted, why, and what mistake or edge mattered.
-- Understanding airdrop/farming strategy from rules, incentives, expected value, and opportunity cost.
+- 理解链上交易员如何判断催化、流动性、CEX 上币路径和叙事强度。
+- 提炼 Meme 周期玩法：龙头 vs 跟涨、事件驱动、流动性时机、退出信号。
+- 学习真实交易复盘：买什么、卖什么、为什么、错在哪里、边际优势是什么。
+- 研究空投/撸毛机会：规则、激励、预期收益、时间成本和机会成本。
 
-### 2. Style Reference
+### 2. 参考语言风格
 
-BTCdayu style:
+BTCdayu 的表达风格：
 
-- Long-form, explanatory, reflective.
-- Often turns market examples into broader principles.
-- Uses analogies and regret/lesson framing to make investment points memorable.
-- Good reference for writing project research threads or value-investing-style notes.
+- 偏长文、解释型、反思型。
+- 常把一个市场案例上升为更大的投资原则。
+- 喜欢用“错过/亏损/教训/认知升级”的方式讲投资逻辑。
+- 适合参考来写项目研报、价值投资风格长推、行业分析。
 
-0xSunNFT style:
+0xSunNFT 的表达风格：
 
-- Direct, tactical, post-trade, detail-heavy.
-- Often explains setup, trigger, position logic, risk, and retrospective in one flow.
-- Good reference for writing trade recaps, on-chain opportunity notes, and short-to-mid-term market judgement.
+- 直接、战术化、交易后复盘感强。
+- 常用“设置条件 -> 触发因素 -> 操作 -> 结果 -> 教训”的结构。
+- 适合参考来写交易复盘、链上机会笔记、短中期行情判断。
 
-### 3. Source Map For Future Analysis
+### 3. 作为未来分析的源地图
 
-The current dataset already gives enough material to build:
+当前数据已经足够支持：
 
-- Per-KOL investment framework summaries.
-- Project-specific memory, for example `CRCL`, `HYPE`, `Hyperliquid`, `Based`, `Fartcoin`, `AI16Z`, `AIXBT`.
-- Category-level views: `project_thesis`, `market_cycle`, `onchain_strategy`, `risk_warning`, `research_source`.
-- Writing-style samples for future content generation.
+- 为每个 KOL 生成投资框架总结。
+- 建立项目级记忆，例如 `CRCL`、`HYPE`、`Hyperliquid`、`Based`、`Fartcoin`、`AI16Z`、`AIXBT`。
+- 按类别查看内容：`project_thesis`、`market_cycle`、`onchain_strategy`、`risk_warning`、`research_source`。
+- 提取写作风格样本，用于未来生成你自己的内容。
 
-## High-Value Themes Found
+## 高价值主题
 
 ### BTCdayu
 
-| Theme | Why it matters | Where to look |
+| 主题 | 为什么重要 | 去哪里看 |
 |---|---|---|
-| AI infrastructure | Repeated focus on compute, storage, HBM, optical interconnect, and infra bottlenecks. Useful for AI-infra project research. | `data/users/BTCdayu/knowledge/twitter_knowledge.jsonl` |
-| Stablecoin/Circle | Multiple records around Circle/USDC, revenue logic, fee sharing, and valuation. Useful for stablecoin and payment-infra analysis. | Search `Circle`, `CRCL`, `USDC` |
-| Crypto market structure | Strong material on why crypto becomes PVP, why many token structures hurt retail, and why BTC is treated differently. | Categories `market_cycle`, `risk_warning` |
-| Pre-IPO / public market crossover | Mentions SpaceX, ByteDance, Cerebras, RKLB, HBM, AI hardware, and Hong Kong IPO context. Useful beyond crypto. | Search `IPO`, `Cerebras`, `SpaceX`, `RKLB` |
-| Lessons from losses | Reusable risk checklist: do not over-fantasize, keep cash, size meme positions small, take profit after lucky gains. | `risk_warning` records |
+| AI 基建 | 高频讨论算力、存储、HBM、光互联、基础设施瓶颈，适合做 AI 基建投研。 | `data/users/BTCdayu/knowledge/twitter_knowledge.jsonl` |
+| 稳定币/Circle | 多条内容涉及 Circle/USDC、收入逻辑、分成、估值，适合稳定币和支付基础设施分析。 | 搜索 `Circle`、`CRCL`、`USDC` |
+| 币圈 PVP 结构 | 对 VC、项目方、交易所、散户接盘结构有明确批判，适合做风险框架。 | 类别 `market_cycle`、`risk_warning` |
+| Pre-IPO / 公开市场交叉 | 涉及 SpaceX、字节、Cerebras、RKLB、HBM、AI 硬件、港股 IPO。 | 搜索 `IPO`、`Cerebras`、`SpaceX`、`RKLB` |
+| 亏损教训 | 可提炼风控清单：少幻想、留现金、Meme 小仓位、赚到后及时兑现。 | `risk_warning` 记录 |
 
-Representative links:
+代表链接：
 
-- PVP market structure: https://x.com/BTCdayu/status/2022112193794408548
-- Risk lessons / cash / meme sizing: https://x.com/BTCdayu/status/2015656975712022786
-- Circle / CRCL positioning and valuation thinking: https://x.com/BTCdayu/status/2034122263889645822
-- Hyperliquid/HYPE unlock and team behavior: https://x.com/BTCdayu/status/2039560077540217309
-- AI infrastructure and HBM chain: search `HBM` in `twitter_knowledge.jsonl`
+- 币圈 PVP 市场结构：https://x.com/BTCdayu/status/2022112193794408548
+- 风险教训、现金、Meme 仓位：https://x.com/BTCdayu/status/2015656975712022786
+- Circle / CRCL 建仓和估值思路：https://x.com/BTCdayu/status/2034122263889645822
+- Hyperliquid / HYPE 解锁和团队行为：https://x.com/BTCdayu/status/2039560077540217309
+- AI 基建 / HBM 价值链：在 `twitter_knowledge.jsonl` 搜索 `HBM`
 
 ### 0xSunNFT
 
-| Theme | Why it matters | Where to look |
+| 主题 | 为什么重要 | 去哪里看 |
 |---|---|---|
-| On-chain playbooks | Detailed records of setups, LP construction, leverage, token mechanics, and post-trade accounting. | Categories `onchain_strategy`, `asset_reference` |
-| Meme leader/follower logic | Strong distinction between true leader, follower rebound, and exit-liquidity traps. | Search `Fartcoin`, `Trump`, `Goat`, `Chillguy` |
-| CEX listing and token launch | Useful material on listing pressure, FDV, allocation, unlocks, and liquidity. | Search `CEX`, `Binance`, `Coinbase`, `FDV` |
-| Airdrop/farming | Practical records on Blast, Lighter, TradeXYZ, Based, and Hyperliquid ecosystem opportunities. | Search `Blast`, `Lighter`, `Based`, `Hyperliquid` |
-| Event-driven trading | Explicit framework: direction plus volatility; news creates tradable moves when market attention converges. | Search `新闻交易`, `事件驱动` |
+| 链上交易打法 | 有大量关于 LP、流动性、杠杆、代币机制、交易复盘的记录。 | 类别 `onchain_strategy`、`asset_reference` |
+| Meme 龙头/跟涨逻辑 | 明确区分真龙头、跟涨反弹、接盘陷阱。 | 搜索 `Fartcoin`、`Trump`、`Goat`、`Chillguy` |
+| CEX 上币和代币发行 | 适合分析上币压力、FDV、筹码分配、解锁、流动性。 | 搜索 `CEX`、`Binance`、`Coinbase`、`FDV` |
+| 空投/撸毛 | 包含 Blast、Lighter、TradeXYZ、Based、Hyperliquid 生态机会。 | 搜索 `Blast`、`Lighter`、`Based`、`Hyperliquid` |
+| 事件驱动交易 | 明确框架：方向性 + 波动性；当市场注意力聚合时，新闻会产生可交易机会。 | 搜索 `新闻交易`、`事件驱动` |
 
-Representative links:
+代表链接：
 
-- Memeland/MEME operation recap: https://x.com/0xSunNFT/status/1720482602111660526
-- Meme short-selection logic: https://x.com/0xSunNFT/status/1930722585828118705
-- Tron meme cycle and leader dependence: https://x.com/0xSunNFT/status/1826868036978311401
-- HYPE trade retrospective: https://x.com/0xSunNFT/status/2018558780968243621
-- Blast rule research: https://x.com/0xSunNFT/status/1727217431830290939
+- Memeland / MEME 操作复盘：https://x.com/0xSunNFT/status/1720482602111660526
+- Meme 做空选标逻辑：https://x.com/0xSunNFT/status/1930722585828118705
+- Tron Meme 周期和龙头依赖：https://x.com/0xSunNFT/status/1826868036978311401
+- HYPE 交易复盘：https://x.com/0xSunNFT/status/2018558780968243621
+- Blast 规则研究：https://x.com/0xSunNFT/status/1727217431830290939
 
-## How To Use This In Project Research
+## 如何用于项目研究
 
-For a new project, use the knowledge base in this order:
+研究一个新项目时，可以按这个顺序用知识库：
 
-1. Search the global index for project name, ticker, chain, and sector.
-2. Read matching KOL records and separate them into:
-   - thesis
-   - risk warning
-   - market timing
-   - comparable projects
-   - trade/farming playbook
-3. Compare KOL lenses:
-   - BTCdayu lens: business quality, durability, valuation, moat, cash flow, management, secular trend.
-   - 0xSunNFT lens: catalyst, liquidity, leader status, CEX path, smart money, timing, exit pressure.
-4. Turn matches into a structured research memo:
-   - What is the asset?
-   - Why now?
-   - Who is the marginal buyer?
-   - What can go wrong?
-   - What would change the view?
+1. 在全局索引里搜索项目名、ticker、链、赛道关键词。
+2. 把匹配记录分成几类：
+   - 投资 thesis
+   - 风险信号
+   - 市场时机
+   - 可比项目
+   - 交易/撸毛玩法
+3. 对比两个 KOL 的视角：
+   - BTCdayu 视角：业务质量、长期趋势、估值、护城河、现金流、管理层。
+   - 0xSunNFT 视角：催化、流动性、龙头地位、CEX 路径、聪明钱、时机、抛压。
+4. 最后整理成项目研究 memo：
+   - 这个资产是什么？
+   - 为什么现在值得看？
+   - 边际买家是谁？
+   - 最大风险是什么？
+   - 什么条件会改变判断？
 
-## Current Blind Spots
+## 当前盲点
 
-- The Twitter API window may not be true historical all-time coverage.
-- Telegram and WeChat sources are not yet ingested.
-- Rule-based filtering is useful but not perfect; some records still need manual review.
-- The reports are summaries, while the full text remains in JSONL for machine analysis.
+- Twitter API 返回的是可分页窗口，不一定是账号注册以来的真正全历史。
+- Telegram 和公众号内容还没有进入知识库。
+- 现在是规则筛选，不是完美语义筛选，仍需要人工抽查。
+- 报告是摘要层，完整文本仍在 JSONL 里，方便机器分析。
 
-## Recommended Next Step
+## 推荐下一步
 
-Build project/topic pages from the indexed records:
+下一步可以按主题生成专题页，而不是继续只堆数据：
 
 - `topics/ai_infra.md`
 - `topics/stablecoin_circle.md`
@@ -137,4 +137,4 @@ Build project/topic pages from the indexed records:
 - `topics/meme_cycle.md`
 - `topics/pre_ipo.md`
 
-These pages should synthesize across KOLs instead of storing raw posts.
+这些专题页应该跨 KOL 综合观点，输出“可直接用于项目研究”的结论。

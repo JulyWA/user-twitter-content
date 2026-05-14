@@ -1,62 +1,63 @@
-# BTCdayu Knowledge Report
+# BTCdayu 知识报告
 
-## Snapshot
+## 概览
 
-- Twitter records archived: 829
-- Knowledge records: 268
-- Link-only records: 190
-- Primary value: value-investing logic, AI infrastructure, stablecoin/Circle, public-market crossover, crypto risk control.
+- 已归档推文：829 条
+- 入库知识记录：268 条
+- 仅保留链接记录：190 条
+- 核心价值：价值投资逻辑、AI 基建、稳定币/Circle、公开市场与 Pre-IPO、币圈风控。
 
-## What This KOL Is Useful For
+## 这个 KOL 适合用来做什么
 
-BTCdayu is best used as a value-investing and project-quality lens. The useful records are not only about crypto tokens; they also cover AI infra, public equities, IPOs, stablecoins, and how to avoid low-quality token structures.
+BTCdayu 更适合作为“价值投资 + 项目质量”的判断视角。他的有效内容不只覆盖加密项目，也覆盖 AI 基建、美股、IPO、稳定币，以及如何避开低质量代币结构。
 
-Use this source when you need to answer:
+适合用来回答：
 
-- Does this project have real revenue or just narrative?
-- Is this a durable business, or a token-distribution game?
-- What part of the industry value chain captures profit?
-- What are the hidden risks from unlocks, valuation, PVP market structure, or management quality?
-- Can this be written as a long-form investment note?
+- 这个项目是真实业务，还是纯叙事？
+- 它有没有收入、护城河、管理层和长期趋势？
+- 行业价值链里，真正赚钱的是哪一层？
+- 是否存在解锁、估值、PVP 结构、团队套现等隐性风险？
+- 这个项目能不能写成一篇长线投资研究？
 
-## Main Themes
+## 主要主题
 
-| Theme | Records / signals | Practical use |
+| 主题 | 典型信号 | 实用价值 |
 |---|---|---|
-| AI infrastructure | AI, storage, HBM, optical interconnect, compute, power | Build AI-infra project thesis and supply-chain maps |
-| Stablecoin/Circle | Circle, USDC, CRCL, fee sharing, valuation | Analyze stablecoin business models |
-| Crypto PVP structure | VC, project team, exchange listing, meme retail traps | Identify extraction games and bad token design |
-| Pre-IPO / public equities | IPO, SpaceX, Cerebras, RKLB, HBM, Hong Kong IPOs | Extend research beyond crypto |
-| Risk lessons | Cash reserves, meme position sizing, taking profit after luck | Build risk checklist |
+| AI 基建 | AI、存储、HBM、光互联、算力、电力 | 构建 AI 基建项目 thesis 和产业链地图 |
+| 稳定币/Circle | Circle、USDC、CRCL、分成、估值 | 分析稳定币商业模式 |
+| 币圈 PVP 结构 | VC、项目方、交易所、Meme 接盘 | 识别收割结构和坏代币设计 |
+| Pre-IPO / 公开市场 | IPO、SpaceX、Cerebras、RKLB、HBM、港股 | 把研究范围扩展到非加密资产 |
+| 亏损教训 | 留现金、Meme 小仓位、幸运获利后兑现 | 构建个人风控清单 |
 
-## Representative Records
+## 代表记录
 
-- PVP market structure and why crypto can become harder to profit from: https://x.com/BTCdayu/status/2022112193794408548
-- Risk lessons on fantasy, cash reserves, BTC, meme sizing, and taking profit: https://x.com/BTCdayu/status/2015656975712022786
-- Circle/CRCL and bottom-up positioning logic: https://x.com/BTCdayu/status/2034122263889645822
-- HYPE unlock behavior and team incentives: https://x.com/BTCdayu/status/2039560077540217309
-- AI/HBM value-chain thinking: search `HBM` or `AI` in `twitter_knowledge.jsonl`
+- 币圈为什么越来越难赚钱，PVP 结构如何形成：https://x.com/BTCdayu/status/2022112193794408548
+- 关于幻想、现金、BTC、Meme 仓位、止盈的风险教训：https://x.com/BTCdayu/status/2015656975712022786
+- Circle / CRCL 的建仓和估值思路：https://x.com/BTCdayu/status/2034122263889645822
+- HYPE 解锁和团队激励行为：https://x.com/BTCdayu/status/2039560077540217309
+- AI / HBM 价值链思考：在 `twitter_knowledge.jsonl` 搜索 `HBM` 或 `AI`
 
-## Extracted Framework
+## 提炼出的研究框架
 
-BTCdayu-style project evaluation can be summarized as:
+可以把 BTCdayu 风格的项目评估总结为：
 
-1. Confirm the business reality: revenue, margin, fee capture, users, retention, cash flow.
-2. Check the moat: license, network effect, brand, data, distribution, management.
-3. Locate the value-chain profit pool: do not buy the visible narrative if another layer captures economics.
-4. Stress-test valuation: compare to public comps and estimate whether future growth is already priced in.
-5. Look for death signals: unlocks, VC-heavy structures, fake TVL, team cash-out, narrative exhaustion.
-6. Size by conviction and liquidity, not by excitement.
+1. 先确认业务真实性：收入、利润、费用捕获、用户、留存、现金流。
+2. 再看护城河：牌照、网络效应、品牌、数据、渠道、管理层。
+3. 找到产业链利润池：不要只买最热叙事，要看哪一层真正捕获价值。
+4. 做估值压力测试：和可比公司/项目比较，判断未来增长是否已经被定价。
+5. 排查死亡信号：解锁、VC 重仓、假 TVL、团队套现、叙事衰退。
+6. 按认知和流动性控制仓位，而不是按兴奋程度下注。
 
-## Writing Style Notes
+## 写作风格
 
-- Uses reflective framing: mistakes, regrets, lessons, and "why I missed it".
-- Often turns a single project into an industry-level principle.
-- Good for long-form research memos with a first-person but analytical tone.
+- 反思型：常从错过、亏损、教训出发。
+- 解释型：会把一个项目案例上升到行业原则。
+- 适合参考来写：长文研报、项目深度分析、价值投资风格内容。
 
-## Files
+## 文件说明
 
-- `twitter_knowledge.jsonl`: curated knowledge records
-- `twitter_links.jsonl`: useful links or weak-context records
-- `twitter_excluded.jsonl`: filtered-out noise for rule review
-- `twitter_summary.md`: counts
+- `twitter_knowledge.jsonl`：筛选后的知识记录
+- `twitter_links.jsonl`：有价值链接或弱上下文记录
+- `twitter_excluded.jsonl`：被排除样本，用于复查筛选规则
+- `twitter_summary.md`：数量统计
+- `sources/twitter/normalized/tweets.jsonl`：已抓取的全量可分析推文文本

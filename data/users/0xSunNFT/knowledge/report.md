@@ -1,62 +1,63 @@
-# 0xSunNFT Knowledge Report
+# 0xSunNFT 知识报告
 
-## Snapshot
+## 概览
 
-- Twitter records archived: 782
-- Knowledge records: 367
-- Link-only records: 251
-- Primary value: on-chain trading logic, meme-cycle judgement, CEX/listing mechanics, event-driven setups, farming and airdrop evaluation.
+- 已归档推文：782 条
+- 入库知识记录：367 条
+- 仅保留链接记录：251 条
+- 核心价值：链上交易逻辑、Meme 周期判断、CEX/上币机制、事件驱动交易、空投/撸毛评估。
 
-## What This KOL Is Useful For
+## 这个 KOL 适合用来做什么
 
-0xSunNFT is best used as a tactical on-chain and event-driven lens. The useful records often contain concrete trade logic: setup, catalyst, liquidity, entry/exit, mistake, and retrospective.
+0xSunNFT 更适合作为“链上交易 + 事件驱动”的战术视角。他的有效内容常常包含完整交易逻辑：机会出现在哪里、催化是什么、流动性如何、如何进出、错在哪里、复盘后得到什么教训。
 
-Use this source when you need to answer:
+适合用来回答：
 
-- Is this token a leader or a follower?
-- Is the move driven by real catalyst, listing path, liquidity, or only short-term attention?
-- Are unlocks, FDV, CEX allocations, or team/KOL rounds creating bad incentives?
-- Is a farming/airdrop opportunity worth the time and capital?
-- How would a trader explain this setup in plain language?
+- 这个 token 是龙头，还是跟涨？
+- 本轮上涨是由真实催化、上币路径、流动性推动，还是短期注意力？
+- FDV、解锁、CEX 分配、KOL 轮是否带来坏激励？
+- 某个空投/撸毛机会是否值得投入时间和资金？
+- 链上交易员会如何用直白语言解释这个机会？
 
-## Main Themes
+## 主要主题
 
-| Theme | Records / signals | Practical use |
+| 主题 | 典型信号 | 实用价值 |
 |---|---|---|
-| On-chain trading | LP, liquidity, token mechanics, event-driven trades | Build trade setup and post-mortem templates |
-| Meme cycles | leader/follower, narrative rotation, timing, exit liquidity | Judge whether a meme is early, leader, or late follower |
-| CEX/listing mechanics | Binance, Coinbase, FDV, allocation, listing pressure | Evaluate launch and listing risk |
-| Airdrop/farming | Blast, Lighter, TradeXYZ, Based, Hyperliquid ecosystem | Estimate farming EV and opportunity cost |
-| Risk control | low leverage, avoid information-asymmetry traps, watch liquidity | Build tactical risk checklist |
+| 链上交易 | LP、流动性、代币机制、事件交易 | 构建交易机会和复盘模板 |
+| Meme 周期 | 龙头/跟涨、叙事轮动、时机、接盘 | 判断 Meme 是否早期、是否龙头、是否尾部 |
+| CEX / 上币机制 | Binance、Coinbase、FDV、筹码、上币压力 | 评估 TGE 和上市风险 |
+| 空投/撸毛 | Blast、Lighter、TradeXYZ、Based、Hyperliquid | 评估撸毛 EV 和机会成本 |
+| 风险控制 | 低杠杆、信息不对称、流动性、解锁 | 建立战术风控清单 |
 
-## Representative Records
+## 代表记录
 
-- Memeland/MEME operation recap, LP logic, leverage, and accounting: https://x.com/0xSunNFT/status/1720482602111660526
-- Meme short-selection logic around leader/follower status and exit pressure: https://x.com/0xSunNFT/status/1930722585828118705
-- Tron meme cycle and dependence on ecosystem leader: https://x.com/0xSunNFT/status/1826868036978311401
-- HYPE trade retrospective and Perp DEX cycle logic: https://x.com/0xSunNFT/status/2018558780968243621
-- Blast rule research and farming mechanics: https://x.com/0xSunNFT/status/1727217431830290939
+- Memeland / MEME 操作复盘，包含 LP、杠杆、收益计算：https://x.com/0xSunNFT/status/1720482602111660526
+- Meme 做空选标逻辑，如何区分龙头、跟涨和出货结构：https://x.com/0xSunNFT/status/1930722585828118705
+- Tron Meme 周期和生态龙头依赖：https://x.com/0xSunNFT/status/1826868036978311401
+- HYPE 交易复盘和 Perp DEX 周期逻辑：https://x.com/0xSunNFT/status/2018558780968243621
+- Blast 规则研究和撸毛机制：https://x.com/0xSunNFT/status/1727217431830290939
 
-## Extracted Framework
+## 提炼出的交易/项目框架
 
-0xSun-style project/trade evaluation can be summarized as:
+可以把 0xSun 风格的判断总结为：
 
-1. Identify the catalyst: listing, event, rules, airdrop, ecosystem rotation, or news.
-2. Judge whether it has direction and volatility.
-3. Check if the token is leader/dragon-one, not a weak follower.
-4. Inspect liquidity and market structure: FDV, float, unlock, CEX allocation, LP setup.
-5. Look for asymmetric payoff: limited downside, strong attention, clear exit path.
-6. Review after the trade: was the thesis right, was sizing right, did greed or hesitation reduce EV?
+1. 先识别催化：上币、事件、规则、空投、生态轮动、新闻。
+2. 判断是否同时具备方向性和波动性。
+3. 判断是否是龙一/龙二，而不是弱跟涨。
+4. 检查流动性和市场结构：FDV、流通、解锁、CEX 分配、LP 设计。
+5. 寻找不对称赔率：下行有限、注意力强、退出路径清晰。
+6. 交易后复盘：判断对不对、仓位对不对、贪婪或犹豫是否降低了 EV。
 
-## Writing Style Notes
+## 写作风格
 
-- Direct and tactical.
-- Often writes in setup -> action -> result -> lesson structure.
-- Good for trade recaps, opportunity memos, and event-driven content.
+- 直接、战术化、复盘感强。
+- 常用“背景 -> 判断 -> 操作 -> 结果 -> 教训”的结构。
+- 适合参考来写：交易复盘、链上机会笔记、事件驱动分析。
 
-## Files
+## 文件说明
 
-- `twitter_knowledge.jsonl`: curated knowledge records
-- `twitter_links.jsonl`: useful links or weak-context records
-- `twitter_excluded.jsonl`: filtered-out noise for rule review
-- `twitter_summary.md`: counts
+- `twitter_knowledge.jsonl`：筛选后的知识记录
+- `twitter_links.jsonl`：有价值链接或弱上下文记录
+- `twitter_excluded.jsonl`：被排除样本，用于复查筛选规则
+- `twitter_summary.md`：数量统计
+- `sources/twitter/normalized/tweets.jsonl`：已抓取的全量可分析推文文本
