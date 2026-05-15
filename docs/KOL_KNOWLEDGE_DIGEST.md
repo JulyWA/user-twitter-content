@@ -1,8 +1,10 @@
 # KOL 知识库摘要
 
-更新时间：2026-05-14
+更新时间：2026-05-15
 
-这份文档是 JSONL 数据之上的“人类可读层”。它不堆原始推文，而是说明：这批数据抓到了什么、哪些内容有价值、以后可以怎么用于项目研究和内容写作。
+> 当前主定位：套利 / 隐藏机会抓取与策略复刻。项目投研画像仍保留为辅助资料，但不再是仓库主工作流。
+
+这份文档是 JSONL 数据之上的“人类可读层”。它不堆原始推文，而是说明：这批数据抓到了什么、哪些内容有价值、以后可以怎么用于机会研究、策略复刻和内容写作。
 
 ## 当前覆盖范围
 
@@ -21,13 +23,14 @@
 
 跨 KOL 索引文件：
 
+- `docs/OPPORTUNITY_CAPTURE_GUIDE.md`：机会抓取和策略复刻主工作流
+- `docs/ARBITRAGE_STRATEGY_DIGEST.md`：套利策略专题摘要
 - `data/index/users.json`
 - `data/index/twitter_knowledge_all.jsonl`
 - `data/index/twitter_links_all.jsonl`
 - `data/index/arbitrage_strategies.jsonl`
 - `data/index/arbitrage_visual_strategies.jsonl`
-- `docs/KOL_DOC_FORMAT.md`：账号报告和投研逻辑文档的固定格式
-- `docs/ARBITRAGE_STRATEGY_DIGEST.md`：套利策略专题摘要
+- `docs/KOL_DOC_FORMAT.md`：账号报告和机会判断文档的固定格式
 
 ## 文档层级
 
@@ -35,8 +38,8 @@
 
 | 文件 | 作用 | 使用方式 |
 |---|---|---|
-| `report.md` | 账号级知识报告，说明这个账号有什么价值、适合什么场景、有哪些证据链接 | 初次了解一个 KOL 时先读 |
-| `research_logic.md` | 投研逻辑沉淀，包含重要信号矩阵、否决信号矩阵、使用流程和问题库 | 做项目研究 checklist 时使用 |
+| `report.md` | 账号级知识报告，说明这个账号有什么机会价值、适合什么场景、有哪些证据链接 | 初次了解一个 KOL 时先读 |
+| `research_logic.md` | 机会判断和策略复刻逻辑，包含重要信号矩阵、否决信号矩阵、使用流程和问题库 | 做机会研究 / 策略复刻 checklist 时使用 |
 
 新增 KOL 的文档已经升级为“可审计版本”：核心判断都尽量挂原文链接，并标注 RT/转推使用提醒。
 
@@ -48,9 +51,9 @@
 
 ## 这批内容到底有什么用
 
-### 1. 提炼项目研究逻辑
+### 1. 提炼机会研究逻辑
 
-知识层保留的不是“所有推文”，而是可复用的判断框架、项目研究片段、风险信号和表达样本。
+知识层保留的不是“所有推文”，而是可复用的判断框架、策略结构、风险信号、监控字段和表达样本。
 
 BTCdayu 适合用来：
 

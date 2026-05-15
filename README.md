@@ -1,13 +1,14 @@
 # User Twitter Content
 
-个人 KOL 知识库的第一阶段：抓取 Twitter/X 内容，按用户归档，并把真正有研究价值的内容筛入 knowledge 层。
+个人 KOL 机会知识库：抓取 Twitter/X 内容，按用户归档，并把套利、对冲、资金费率、价差、积分挖矿、带图监控和其他隐藏机会筛入 knowledge 层。
 
-目标不是“保存所有推文”，而是沉淀：
+目标不是“保存所有推文”，也不是把 KOL 当成项目投研评分标准，而是沉淀：
 
-- 每个 KOL 的项目研究逻辑
-- 投资框架、市场判断、风险偏好
-- 有价值的原文链接
-- 可参考的表达风格样本
+- 可复刻或可改造的套利策略
+- 隐藏收益机会和早期机会线索
+- 策略监控字段、截图和原文证据
+- 策略风险、失败复盘和否决条件
+- 可用于后续构建自己监控系统的数据基础
 
 ## Key 写入模板
 
@@ -72,8 +73,9 @@ data/users/<handle>/
 如果你只是想知道这批内容有什么价值，优先看：
 
 - `docs/AI_USAGE_GUIDE.md`：给团队成员和其他 AI 的使用指引，说明如何分析、如何引用证据、什么情况下不要重复抓取
+- `docs/OPPORTUNITY_CAPTURE_GUIDE.md`：机会抓取知识库主工作流，说明如何从 KOL 内容提炼可复刻策略
 - `docs/KOL_KNOWLEDGE_DIGEST.md`：全局摘要，说明每个 KOL 的可用价值和代表主题
-- `docs/KOL_RESEARCH_LOGIC.md`：跨 KOL 的投研逻辑沉淀，重点是信号、否决条件、适用场景
+- `docs/KOL_RESEARCH_LOGIC.md`：历史投研逻辑沉淀，当前主要作为机会研究的背景参考
 - `docs/ARBITRAGE_STRATEGY_DIGEST.md`：套利策略专题摘要，聚合资金费率、价差、对冲、带图策略记录
 - `docs/KOL_DOC_FORMAT.md`：每个 KOL 的 `report.md` 和 `research_logic.md` 固定格式规范
 - `data/users/BTCdayu/knowledge/report.md`：BTCdayu 可读报告
@@ -81,7 +83,7 @@ data/users/<handle>/
 - `data/users/0xSunNFT/knowledge/report.md`：0xSunNFT 可读报告
 - `data/users/0xSunNFT/knowledge/research_logic.md`：0xSunNFT 的 Meme 周期/链上交易信号框架
 - `data/users/<handle>/knowledge/report.md`：每个新增 KOL 的中文可读报告
-- `data/users/<handle>/knowledge/research_logic.md`：每个新增 KOL 的投研逻辑、重要信号和否决信号
+- `data/users/<handle>/knowledge/research_logic.md`：每个新增 KOL 的机会判断逻辑、重要信号、可复刻字段和否决信号
 - `data/index/users.json`：每个用户的数据规模、时间范围、类别分布
 
 ## 抓取推文

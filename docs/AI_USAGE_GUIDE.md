@@ -6,12 +6,13 @@
 
 ## 一句话说明
 
-这是一个 KOL 知识库，不是简单的推文备份。仓库里已经包含：
+这是一个 KOL 机会知识库，不是简单的推文备份，也不是项目打分器。仓库里已经包含：
 
 - 每个 KOL 的 Twitter/X 抓取结果。
 - 规则筛选后的知识记录。
 - 每个 KOL 的中文报告和投研逻辑。
 - 跨 KOL 的全局索引。
+- 套利/隐藏机会专题索引和带图策略索引。
 
 如果只是做分析，通常不需要再次调用 RapidAPI。
 
@@ -22,15 +23,16 @@
 先读：
 
 1. `README.md`
-2. `docs/KOL_KNOWLEDGE_DIGEST.md`
-3. `docs/KOL_RESEARCH_LOGIC.md`
+2. `docs/OPPORTUNITY_CAPTURE_GUIDE.md`
+3. `docs/ARBITRAGE_STRATEGY_DIGEST.md`
+4. `docs/KOL_KNOWLEDGE_DIGEST.md`
 
-这三份文件回答：
+这些文件回答：
 
 - 当前有哪些 KOL。
-- 每个人适合研究什么。
+- 每个人适合抓取什么机会。
 - 每个人的核心信号和否决信号是什么。
-- 哪些 KOL 适合组合使用。
+- 哪些 KOL 适合做策略复刻、监控面板或风险复盘。
 
 ### 第二步：查看单个 KOL
 
@@ -41,9 +43,9 @@ data/users/<handle>/knowledge/report.md
 data/users/<handle>/knowledge/research_logic.md
 ```
 
-`report.md` 适合快速理解这个账号有什么用。
+`report.md` 适合快速理解这个账号能提供什么机会线索。
 
-`research_logic.md` 适合提取项目研究 checklist。
+`research_logic.md` 适合提取策略复刻 checklist、监控字段和风险过滤规则。
 
 ### 第三步：需要机器分析时读 JSONL
 
@@ -67,8 +69,10 @@ data/users/<handle>/sources/twitter/normalized/tweets.jsonl
 
 | 文件 | 用途 | 是否推荐给 AI 优先读取 |
 |---|---|---|
+| `docs/OPPORTUNITY_CAPTURE_GUIDE.md` | 机会抓取和策略复刻主工作流 | 是 |
+| `docs/ARBITRAGE_STRATEGY_DIGEST.md` | 套利策略专题摘要 | 是 |
 | `docs/KOL_KNOWLEDGE_DIGEST.md` | 全局摘要，说明每个 KOL 的价值和主题 | 是 |
-| `docs/KOL_RESEARCH_LOGIC.md` | 跨 KOL 的投研逻辑沉淀 | 是 |
+| `docs/KOL_RESEARCH_LOGIC.md` | 历史投研逻辑沉淀，当前作为辅助资料 | 视任务需要 |
 | `docs/KOL_DOC_FORMAT.md` | 单个 KOL 报告和逻辑文档的格式规范 | 是，尤其是要新增报告时 |
 | `data/index/users.json` | 用户列表、数据量、认证状态、类别分布 | 是 |
 | `data/index/twitter_knowledge_all.jsonl` | 跨 KOL 入库知识记录合集 | 是 |
@@ -137,22 +141,23 @@ AI 在选择数据源时，应先读取 `users.json` 判断每个账号适合什
 
 ## 推荐分析方式
 
-### 做项目研究
+### 做机会/套利策略研究
 
 建议流程：
 
-1. 在 `twitter_knowledge_all.jsonl` 搜索项目名、ticker、链、赛道关键词。
-2. 把命中记录按 KOL 分组。
+1. 优先在 `arbitrage_strategies.jsonl` 搜索项目名、ticker、交易所、协议、策略关键词。
+2. 如果需要截图或面板字段，优先用 `arbitrage_visual_strategies.jsonl`。
 3. 对每条结论保留原文 `url`。
 4. 区分观点类型：
-   - 项目 thesis
-   - 市场周期
-   - 链上交易
+   - funding / basis
+   - spread / orderbook
+   - options
+   - points / airdrop
+   - lending / borrow
+   - monitor / alert
    - 风险提醒
-   - 研究来源
-   - 写作风格样本
-5. 用 `research_logic.md` 中的问题库做二次检查。
-6. 输出结论时明确写出“来自哪个 KOL、哪条原文、是否需要人工复核”。
+5. 用 `OPPORTUNITY_CAPTURE_GUIDE.md` 的字段拆解策略结构。
+6. 输出结论时明确写出“来源 KOL、原文链接、可复刻性、监控字段、风险条件”。
 
 ### 做 KOL 画像
 
@@ -258,14 +263,16 @@ https://x.com/0xSunNFT/status/...
 给 AI 的任务可以这样写：
 
 ```text
-请基于这个 repo 的 KOL 知识库，分析 <项目名/ticker>。
-先在 data/index/twitter_knowledge_all.jsonl 检索相关记录，再结合 docs/KOL_RESEARCH_LOGIC.md 判断不同 KOL 的视角。
+请基于这个 repo 的 KOL 机会知识库，分析 <项目名/ticker/策略关键词> 是否存在可复刻套利或隐藏机会。
+先在 data/index/arbitrage_strategies.jsonl 和 data/index/arbitrage_visual_strategies.jsonl 检索相关记录，再结合 docs/OPPORTUNITY_CAPTURE_GUIDE.md 拆解策略结构。
 输出：
 1. 相关 KOL 和原文链接
-2. 支持信号
-3. 风险/否决信号
-4. 哪些结论需要人工复核
-5. 我的下一步研究问题清单
+2. 收益来源
+3. 交易腿/对冲腿
+4. 需要监控的字段
+5. 风险/否决信号
+6. 可复刻性判断
+7. 下一步研究问题清单
 ```
 
 ### 任务：生成某个 KOL 的画像
