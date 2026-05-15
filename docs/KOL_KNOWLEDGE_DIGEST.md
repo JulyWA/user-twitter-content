@@ -31,6 +31,7 @@
 - `data/index/arbitrage_strategies.jsonl`
 - `data/index/arbitrage_visual_strategies.jsonl`
 - `docs/KOL_DOC_FORMAT.md`：账号报告和机会判断文档的固定格式
+- `docs/KOL_BACKGROUND_REFERENCE.md`：历史投研背景参考，当前只作为辅助资料
 
 ## 文档层级
 

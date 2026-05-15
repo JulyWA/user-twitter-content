@@ -72,7 +72,7 @@ data/users/<handle>/sources/twitter/normalized/tweets.jsonl
 | `docs/OPPORTUNITY_CAPTURE_GUIDE.md` | 机会抓取和策略复刻主工作流 | 是 |
 | `docs/ARBITRAGE_STRATEGY_DIGEST.md` | 套利策略专题摘要 | 是 |
 | `docs/KOL_KNOWLEDGE_DIGEST.md` | 全局摘要，说明每个 KOL 的价值和主题 | 是 |
-| `docs/KOL_RESEARCH_LOGIC.md` | 历史投研逻辑沉淀，当前作为辅助资料 | 视任务需要 |
+| `docs/KOL_BACKGROUND_REFERENCE.md` | 历史投研背景参考，当前作为辅助资料 | 视任务需要 |
 | `docs/KOL_DOC_FORMAT.md` | 单个 KOL 报告和逻辑文档的格式规范 | 是，尤其是要新增报告时 |
 | `data/index/users.json` | 用户列表、数据量、认证状态、类别分布 | 是 |
 | `data/index/twitter_knowledge_all.jsonl` | 跨 KOL 入库知识记录合集 | 是 |
@@ -243,7 +243,7 @@ https://x.com/0xSunNFT/status/...
 可以把下面这段贴给其他 AI：
 
 ```text
-你正在使用一个 KOL 知识库 repo。请优先读取 README.md、docs/KOL_KNOWLEDGE_DIGEST.md、docs/KOL_RESEARCH_LOGIC.md、data/index/users.json。
+你正在使用一个 KOL 知识库 repo。请优先读取 README.md、docs/OPPORTUNITY_CAPTURE_GUIDE.md、docs/ARBITRAGE_STRATEGY_DIGEST.md、docs/KOL_KNOWLEDGE_DIGEST.md、data/index/users.json。
 
 如果需要分析具体 KOL，请读取 data/users/<handle>/knowledge/report.md 和 research_logic.md。
 
@@ -316,7 +316,7 @@ KOL / 核心观点 / 支持证据链接 / 风险提醒 / 如何组合使用。
 
 1. `data/index/users.json`
 2. `docs/KOL_KNOWLEDGE_DIGEST.md`
-3. `docs/KOL_RESEARCH_LOGIC.md`
+3. `docs/KOL_BACKGROUND_REFERENCE.md`
 4. 该 KOL 的 `report.md`
 5. 该 KOL 的 `research_logic.md`
 

@@ -75,7 +75,7 @@ data/users/<handle>/
 - `docs/AI_USAGE_GUIDE.md`：给团队成员和其他 AI 的使用指引，说明如何分析、如何引用证据、什么情况下不要重复抓取
 - `docs/OPPORTUNITY_CAPTURE_GUIDE.md`：机会抓取知识库主工作流，说明如何从 KOL 内容提炼可复刻策略
 - `docs/KOL_KNOWLEDGE_DIGEST.md`：全局摘要，说明每个 KOL 的可用价值和代表主题
-- `docs/KOL_RESEARCH_LOGIC.md`：历史投研逻辑沉淀，当前主要作为机会研究的背景参考
+- `docs/KOL_BACKGROUND_REFERENCE.md`：历史投研背景参考，当前主要作为机会研究的辅助资料
 - `docs/ARBITRAGE_STRATEGY_DIGEST.md`：套利策略专题摘要，聚合资金费率、价差、对冲、带图策略记录
 - `docs/KOL_DOC_FORMAT.md`：每个 KOL 的 `report.md` 和 `research_logic.md` 固定格式规范
 - `data/users/BTCdayu/knowledge/report.md`：BTCdayu 可读报告
