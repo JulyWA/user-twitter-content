@@ -15,6 +15,9 @@
 | Super4DeFi | DeFi 现金流 / 链上流动性 | 协议收入、LP 风险、TVL 质量、回购分红、发行机制 | 手续费收入、价值捕获、APR 来源、LP 风险、风控标准 |
 | SonMa84176 | 杠杆清算 / 筹码结构 | BTC/山寨风险、上币异常、小盘币做市、假突破 | 清算、做市商、运营资金、外部流通、异常钱包 |
 | Vida_BWE | Prop trading / 交易执行 | 交易复盘、套保、止损、CEX/DEX Perp 比较、高 FDV 估值 | 观点证伪、动态止损、套保比例、相对估值、基础设施可靠性 |
+| Metabape | Perp DEX 套利 / 积分现金流 | Variational、Lighter、Backpack、跨所价差、资金费率 | funding/basis、积分规则、保证金安全、盘口深度、移动端应急 |
+| yourQuantGuy | 量化套利 / 期权结构 | Perp DEX、期权套利、订单簿深度、错价监控 | executable spread、implied APR、期权四腿、杠杆压力、监控触发 |
+| sunlc_crypto | 工程化套利 / 高频框架 | 交易所 API、借贷机器人、高频价差、反撸复盘 | API 质量、现货可借量、充提状态、资金成本、熔断日志 |
 
 ## 新增 KOL：可复用逻辑
 

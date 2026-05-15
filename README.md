@@ -74,6 +74,7 @@ data/users/<handle>/
 - `docs/AI_USAGE_GUIDE.md`：给团队成员和其他 AI 的使用指引，说明如何分析、如何引用证据、什么情况下不要重复抓取
 - `docs/KOL_KNOWLEDGE_DIGEST.md`：全局摘要，说明每个 KOL 的可用价值和代表主题
 - `docs/KOL_RESEARCH_LOGIC.md`：跨 KOL 的投研逻辑沉淀，重点是信号、否决条件、适用场景
+- `docs/ARBITRAGE_STRATEGY_DIGEST.md`：套利策略专题摘要，聚合资金费率、价差、对冲、带图策略记录
 - `docs/KOL_DOC_FORMAT.md`：每个 KOL 的 `report.md` 和 `research_logic.md` 固定格式规范
 - `data/users/BTCdayu/knowledge/report.md`：BTCdayu 可读报告
 - `data/users/BTCdayu/knowledge/research_logic.md`：BTCdayu 的价值投资/项目质量判断框架
@@ -161,6 +162,8 @@ python3 scripts/build_index.py
 - `data/index/users.json`：每个用户的数据规模、时间范围、类别分布
 - `data/index/twitter_knowledge_all.jsonl`：跨 KOL 的知识记录合集
 - `data/index/twitter_links_all.jsonl`：跨 KOL 的链接合集
+- `data/index/arbitrage_strategies.jsonl`：跨 KOL 的套利策略记录合集
+- `data/index/arbitrage_visual_strategies.jsonl`：带图/截图的套利策略记录合集
 
 ## 更新流程
 
@@ -170,6 +173,7 @@ python3 scripts/build_index.py
 python3 scripts/archive_twitter_kols.py --user-file config/handles.txt --sleep 3
 python3 scripts/build_twitter_knowledge.py
 python3 scripts/build_index.py
+python3 scripts/build_arbitrage_index.py
 ```
 
 ## Public Repo 提交建议

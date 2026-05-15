@@ -123,6 +123,38 @@ SIGNAL_RULES: list[tuple[str, int, list[str]]] = [
         ],
     ),
     (
+        "arbitrage_strategy",
+        5,
+        [
+            "套利",
+            "搬砖",
+            "对冲",
+            "套保",
+            "价差",
+            "基差",
+            "资金费率",
+            "费率套利",
+            "跨所",
+            "期现",
+            "delta neutral",
+            "delta-neutral",
+            "market neutral",
+            "basis",
+            "funding",
+            "funding rate",
+            "spread",
+            "premium",
+            "discount",
+            "hedge",
+            "arb",
+            "arbitrage",
+            "monitor",
+            "alert",
+            "apy",
+            "apr",
+        ],
+    ),
+    (
         "risk_warning",
         4,
         [
@@ -286,11 +318,20 @@ def score_tweet(tweet: dict[str, Any]) -> dict[str, Any]:
         categories.add("link_only")
         reasons.append("link_retained")
 
+    media_urls = tweet.get("media_urls") or []
+    if media_urls:
+        categories.add("media_attached")
+        reasons.append(f"media:{len(media_urls)}")
+        if "arbitrage_strategy" in categories:
+            score += 2
+            categories.add("visual_strategy")
+
     return {
         "score": score,
         "categories": sorted(categories),
         "reasons": reasons,
         "urls": sorted(set(urls)),
+        "media_urls": media_urls,
     }
 
 
@@ -315,6 +356,8 @@ def knowledge_record(tweet: dict[str, Any], meta: dict[str, Any]) -> dict[str, A
             "quotes": tweet.get("quote_count"),
         },
         "filter_reasons": meta["reasons"],
+        "media_urls": meta["media_urls"],
+        "has_media": bool(meta["media_urls"]),
     }
 
 
@@ -326,6 +369,8 @@ def link_record(tweet: dict[str, Any], meta: dict[str, Any]) -> dict[str, Any]:
         "url": tweet.get("url"),
         "created_at": tweet.get("created_at"),
         "linked_urls": meta["urls"],
+        "media_urls": meta["media_urls"],
+        "has_media": bool(meta["media_urls"]),
         "text_preview": compact_text(tweet.get("text"))[:240],
         "score": meta["score"],
         "filter_reasons": meta["reasons"],

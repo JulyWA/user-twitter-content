@@ -15,13 +15,19 @@
 | Super4DeFi | 837 | 179 | 74 | DeFi 协议收入、链上流动性、LP 风险、发行机制、回购分红 |
 | SonMa84176 | 615 | 155 | 237 | BTC/宏观风险、杠杆清算、做市筹码、上币异常、散户陷阱 |
 | Vida_BWE | 335 | 99 | 38 | Prop trading 风控、套保、CEX/DEX Perp 对比、交易复盘 |
+| Metabape | 806 | 365 | 330 | Perp DEX 套利、跨所价差、积分/空投与现金流结合、带图策略复盘 |
+| yourQuantGuy | 446 | 243 | 110 | 期权套利、订单簿深度、资金费率、杠杆风险、量化监控 |
+| sunlc_crypto | 741 | 220 | 308 | 高频套利框架、借贷机器人、API 工程、资金费率风险、反撸复盘 |
 
 跨 KOL 索引文件：
 
 - `data/index/users.json`
 - `data/index/twitter_knowledge_all.jsonl`
 - `data/index/twitter_links_all.jsonl`
+- `data/index/arbitrage_strategies.jsonl`
+- `data/index/arbitrage_visual_strategies.jsonl`
 - `docs/KOL_DOC_FORMAT.md`：账号报告和投研逻辑文档的固定格式
+- `docs/ARBITRAGE_STRATEGY_DIGEST.md`：套利策略专题摘要
 
 ## 文档层级
 
@@ -33,6 +39,12 @@
 | `research_logic.md` | 投研逻辑沉淀，包含重要信号矩阵、否决信号矩阵、使用流程和问题库 | 做项目研究 checklist 时使用 |
 
 新增 KOL 的文档已经升级为“可审计版本”：核心判断都尽量挂原文链接，并标注 RT/转推使用提醒。
+
+套利策略类内容优先看：
+
+- Metabape：Perp DEX、Variational、Lighter、Backpack、积分和现金流叠加。
+- yourQuantGuy：期权套利、订单簿深度、杠杆中性策略和监控触发。
+- sunlc_crypto：高频套利框架、交易所 API、借贷机器人和失败复盘。
 
 ## 这批内容到底有什么用
 

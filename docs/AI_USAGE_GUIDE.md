@@ -73,6 +73,8 @@ data/users/<handle>/sources/twitter/normalized/tweets.jsonl
 | `data/index/users.json` | 用户列表、数据量、认证状态、类别分布 | 是 |
 | `data/index/twitter_knowledge_all.jsonl` | 跨 KOL 入库知识记录合集 | 是 |
 | `data/index/twitter_links_all.jsonl` | 跨 KOL 链接保留记录合集 | 视任务需要 |
+| `data/index/arbitrage_strategies.jsonl` | 跨 KOL 套利策略记录合集 | 做套利研究时优先 |
+| `data/index/arbitrage_visual_strategies.jsonl` | 带图/截图的套利策略记录合集 | 想复刻监控面板时优先 |
 | `data/users/<handle>/knowledge/report.md` | 单个 KOL 的人类可读报告 | 是 |
 | `data/users/<handle>/knowledge/research_logic.md` | 单个 KOL 的信号、否决、流程、问题库 | 是 |
 | `data/users/<handle>/knowledge/twitter_knowledge.jsonl` | 单个 KOL 的知识记录 | 是 |
@@ -299,6 +301,7 @@ KOL / 核心观点 / 支持证据链接 / 风险提醒 / 如何组合使用。
 | DeFi 协议收入、LP 风险、TVL/APR | Super4DeFi |
 | BTC/山寨结构风险、杠杆清算、上币异常 | SonMa84176 |
 | 交易执行、止损、套保、CEX/DEX Perp 比较 | Vida_BWE |
+| 套利策略、资金费率、价差、带图监控复刻 | Metabape / yourQuantGuy / sunlc_crypto |
 
 ## 维护建议
 

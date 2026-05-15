@@ -379,6 +379,59 @@ def extract_bottom_cursor(data: Any) -> str | None:
     return None
 
 
+def extract_media_items(legacy: dict[str, Any]) -> list[dict[str, Any]]:
+    media_items: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for container_key in ("extended_entities", "entities"):
+        container = legacy.get(container_key)
+        if not isinstance(container, dict):
+            continue
+        media_list = container.get("media")
+        if not isinstance(media_list, list):
+            continue
+        for item in media_list:
+            if not isinstance(item, dict):
+                continue
+            media_type = item.get("type")
+            media_url = item.get("media_url_https") or item.get("media_url")
+            expanded_url = item.get("expanded_url") or item.get("url")
+            video_url = None
+            video_info = item.get("video_info")
+            if isinstance(video_info, dict):
+                variants = video_info.get("variants")
+                if isinstance(variants, list):
+                    video_variants = [
+                        variant
+                        for variant in variants
+                        if isinstance(variant, dict) and variant.get("url")
+                    ]
+                    if video_variants:
+                        best = max(video_variants, key=lambda v: int(v.get("bitrate") or 0))
+                        video_url = best.get("url")
+            key = str(media_url or video_url or expanded_url or item.get("id_str") or "")
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            media_items.append(
+                {
+                    "type": media_type,
+                    "media_url": media_url,
+                    "video_url": video_url,
+                    "expanded_url": expanded_url,
+                    "alt_text": item.get("ext_alt_text") or item.get("alt_text"),
+                }
+            )
+    return media_items
+
+
+def first_media_url(media_items: list[dict[str, Any]], key: str) -> str | None:
+    for item in media_items:
+        value = item.get(key)
+        if value:
+            return str(value)
+    return None
+
+
 def normalize_twttr_tweet(tweet: dict[str, Any], username: str) -> dict[str, Any]:
     legacy = tweet.get("legacy") if isinstance(tweet.get("legacy"), dict) else tweet
     core = tweet.get("core") if isinstance(tweet.get("core"), dict) else {}
@@ -387,12 +440,16 @@ def normalize_twttr_tweet(tweet: dict[str, Any], username: str) -> dict[str, Any
     user_legacy = user.get("legacy") if isinstance(user.get("legacy"), dict) else {}
     tid = str(tweet.get("rest_id") or legacy.get("id_str") or legacy.get("tweet_id") or "")
     created_at = legacy.get("created_at") or tweet.get("creation_date")
+    media_items = extract_media_items(legacy)
     return {
         "tweet_id": tid,
         "creation_date": created_at,
         "text": legacy.get("full_text") or legacy.get("text") or tweet.get("text") or "",
-        "media_url": None,
-        "video_url": None,
+        "media_url": first_media_url(media_items, "media_url"),
+        "media_urls": [item["media_url"] for item in media_items if item.get("media_url")],
+        "video_url": first_media_url(media_items, "video_url"),
+        "video_urls": [item["video_url"] for item in media_items if item.get("video_url")],
+        "media": media_items,
         "user": {
             "user_id": str(user.get("rest_id") or user_legacy.get("id_str") or ""),
             "username": user_legacy.get("screen_name") or username,
@@ -480,7 +537,10 @@ def normalize_tweet(tweet: dict[str, Any], username: str) -> dict[str, Any]:
         "quoted_text": extract_quoted_text(tweet),
         "expanded_url": tweet.get("expanded_url"),
         "media_url": tweet.get("media_url"),
+        "media_urls": tweet.get("media_urls") or ([tweet.get("media_url")] if tweet.get("media_url") else []),
+        "media": tweet.get("media") or [],
         "video_url": tweet.get("video_url"),
+        "video_urls": tweet.get("video_urls") or ([tweet.get("video_url")] if tweet.get("video_url") else []),
         "source": tweet.get("source"),
     }
 
@@ -496,6 +556,7 @@ def clean_tweet(tweet: dict[str, Any]) -> dict[str, Any]:
         "quoted": extract_quoted_text(tweet),
         "likes": tweet.get("favorite_count") or 0,
         "views": tweet.get("views") or 0,
+        "media_urls": tweet.get("media_urls") or [],
     }
 
 

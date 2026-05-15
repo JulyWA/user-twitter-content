@@ -126,6 +126,85 @@
     }
   },
   {
+    "handle": "Metabape",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/Metabape",
+      "name": null,
+      "description": "记录生活，分享偏见。",
+      "followers_count": 26476,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 806,
+      "knowledge_records": 365,
+      "link_records": 330,
+      "excluded_records": 111,
+      "newest": "2026-05-12T16:00:35+00:00",
+      "oldest": "2025-03-18T16:48:34+00:00",
+      "top_categories": [
+        [
+          "media_attached",
+          186
+        ],
+        [
+          "market_cycle",
+          183
+        ],
+        [
+          "project_thesis",
+          183
+        ],
+        [
+          "asset_reference",
+          147
+        ],
+        [
+          "onchain_strategy",
+          116
+        ],
+        [
+          "arbitrage_strategy",
+          97
+        ],
+        [
+          "investment_framework",
+          92
+        ],
+        [
+          "research_source",
+          50
+        ],
+        [
+          "visual_strategy",
+          42
+        ],
+        [
+          "risk_warning",
+          37
+        ],
+        [
+          "style_sample",
+          4
+        ],
+        [
+          "link_only",
+          1
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/Metabape/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/Metabape/knowledge/twitter_links.jsonl",
+      "summary": "data/users/Metabape/knowledge/twitter_summary.md"
+    }
+  },
+  {
     "handle": "SonMa84176",
     "sources": [
       "twitter"
@@ -374,6 +453,81 @@
     }
   },
   {
+    "handle": "sunlc_crypto",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/sunlc_crypto",
+      "name": null,
+      "description": "HODLer/Defi Farmer❌/Quant❌/Arbitrager❌",
+      "followers_count": 38621,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 741,
+      "knowledge_records": 220,
+      "link_records": 308,
+      "excluded_records": 213,
+      "newest": "2026-05-11T05:09:23+00:00",
+      "oldest": "2022-11-10T13:32:48+00:00",
+      "top_categories": [
+        [
+          "media_attached",
+          122
+        ],
+        [
+          "market_cycle",
+          115
+        ],
+        [
+          "project_thesis",
+          82
+        ],
+        [
+          "investment_framework",
+          69
+        ],
+        [
+          "risk_warning",
+          52
+        ],
+        [
+          "arbitrage_strategy",
+          49
+        ],
+        [
+          "research_source",
+          35
+        ],
+        [
+          "onchain_strategy",
+          27
+        ],
+        [
+          "visual_strategy",
+          26
+        ],
+        [
+          "style_sample",
+          7
+        ],
+        [
+          "link_only",
+          1
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/sunlc_crypto/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/sunlc_crypto/knowledge/twitter_links.jsonl",
+      "summary": "data/users/sunlc_crypto/knowledge/twitter_summary.md"
+    }
+  },
+  {
     "handle": "xiaomustock",
     "sources": [
       "twitter"
@@ -434,6 +588,85 @@
       "knowledge": "data/users/xiaomustock/knowledge/twitter_knowledge.jsonl",
       "links": "data/users/xiaomustock/knowledge/twitter_links.jsonl",
       "summary": "data/users/xiaomustock/knowledge/twitter_summary.md"
+    }
+  },
+  {
+    "handle": "yourQuantGuy",
+    "sources": [
+      "twitter"
+    ],
+    "profile": {
+      "url": "https://x.com/yourQuantGuy",
+      "name": null,
+      "description": "hedge fund → fintech → crypto\n(defi farmer → perp dex grinder)\ntg社群: https://t.co/GCSeWltJX3",
+      "followers_count": 17465,
+      "verified": false,
+      "is_blue_verified": true,
+      "verified_type": "This account is verified. Learn more",
+      "verified_or_above": true
+    },
+    "twitter": {
+      "normalized_tweets": 446,
+      "knowledge_records": 243,
+      "link_records": 110,
+      "excluded_records": 93,
+      "newest": "2026-05-14T11:29:55+00:00",
+      "oldest": "2025-01-05T15:05:39+00:00",
+      "top_categories": [
+        [
+          "media_attached",
+          113
+        ],
+        [
+          "arbitrage_strategy",
+          110
+        ],
+        [
+          "project_thesis",
+          101
+        ],
+        [
+          "investment_framework",
+          75
+        ],
+        [
+          "visual_strategy",
+          61
+        ],
+        [
+          "market_cycle",
+          57
+        ],
+        [
+          "onchain_strategy",
+          56
+        ],
+        [
+          "risk_warning",
+          40
+        ],
+        [
+          "research_source",
+          38
+        ],
+        [
+          "asset_reference",
+          14
+        ],
+        [
+          "style_sample",
+          7
+        ],
+        [
+          "link_only",
+          4
+        ]
+      ]
+    },
+    "paths": {
+      "knowledge": "data/users/yourQuantGuy/knowledge/twitter_knowledge.jsonl",
+      "links": "data/users/yourQuantGuy/knowledge/twitter_links.jsonl",
+      "summary": "data/users/yourQuantGuy/knowledge/twitter_summary.md"
     }
   }
 ]
